@@ -2,6 +2,7 @@ package com.irise.testng.featureTests
 
 import com.irise.Chapter
 import com.irise.Common
+import com.irise.Content
 import com.irise.IDoc
 import com.irise.Project
 import com.irise.Widget
@@ -80,11 +81,25 @@ class TestWidgetsGrouping {
 
         // Delete the project manually.
     }
+    @Test
+    def void dosth () {
+        def cid =  ""
+        //resp = chapter.getAll(projid)
+        String ccid = "﻿chapter1411434527297"
+        // TODO ASSERT
+        assertEquals (ccid, "﻿chapter1411434527297","NOT EQUAL");
+    }
 
     @Test(groups = ["feature"])
     def void testLoadIdocAndVerifyGroup() {
+        def resp
+        def project = new Project()
+        def chapter = new Chapter()
+
         def common = new Common()
-        common.setup()
+        //common.setup()
+
+
 
 
         def idoc = new IDoc()
@@ -93,8 +108,102 @@ class TestWidgetsGrouping {
         assertEquals(resp.status, 201, "idoc file not loaded")
 
         resp = project.getAll()
+        // TODO assert resp -- correct status && resp resp.responseData > 0
+        // assert resp[responseData] ["projects"]
 
-        common.e
+        //print resp["responseData"] ["projects"]
+        //def projname = ""
+        def projid = ''
+        for ( e in resp["responseData"] ["projects"] ) {
+            //x += e.value
+
+//            if ("GroupedWidgets".equalsIgnoreCase(e["projectName"])) {
+//                projid = e["projectId"]
+//                break;
+//            }
+            if ( 'GroupedWidgets' == e["projectName"] ) {
+                projid = e["projectId"]
+                break
+            }
+        }
+        //TODO assert projid valid
+        //println("show projid\n")
+        //print projid
+
+        // read chapters from project
+        // find "﻿chapter1411434527297"
+
+        def cid =  ''
+        resp = chapter.getAll(projid)
+        def ccidnm = "chapter1411434527297"
+        def eid
+        def echptid
+        def tstr
+        def econtentid
+        // TODO ASSERT
+        for ( def e in resp["responseData"] ["chapters"] ) {
+            eid = e["id"]
+            echptid = e["content"]["chapterId"]
+            econtentid = e["content"]["id"]
+            tstr = e["name"]
+            println ()
+            println ccidnm
+            println tstr
+            println eid
+            println echptid
+            println econtentid
+
+
+//            if (ccid.equalsIgnoreCase(str)) {
+//                cid = e["id"]
+//                break;
+//            }
+            //if ( String.CaseInsensitiveComparator.compare (ccid,tstr) == 0  ) {
+            //if (ccid.equalsIgnoreCase(tstr)) {
+            if ( ccidnm.equals(tstr) ) {
+                //println "EQUAL CASE"
+                //cid = eid
+                cid = econtentid
+                break;
+            }
+        }
+
+        //def chptids =  chapter.getAllChapterIds(resp)
+        // TODO ASSERT
+
+        // TODO ASSERT CHPTID  VALID
+        println "cid"
+
+        println cid
+
+
+
+
+        def widget = new Widget()
+        //widget.get()
+
+
+        // read widets from a chapter
+
+//        //println "chapter id $chapterId project id $projectId content id $contentId"
+        println "content"
+        def content = new Content()
+//        // given the content on the chapter
+        resp = content.get(projid, cid)
+        assertEquals(resp.status, 200, "fail get content")
+
+        for ( def e in resp["responseData"] ["content"]["widgets"] ) {
+            println  e["name"]
+
+        }
+
+
+
+        // iterate the widgets TODO assert all widgets GID == [0]
+
+
+
+        common.deleteAllProjects();
 
 
     }
