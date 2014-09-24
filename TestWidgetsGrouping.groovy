@@ -30,9 +30,89 @@ class TestWidgetsGrouping {
      */
 
     /**
-     *  Create a iDoc with a lot grouped widgets.
-     *  ||G|| >> 3. Load the iDoc as test prerequisite and
-     *  validate all widgets belonging to the same group. valid case.
+     * Given a group G having N widgets, N>=3, try to remove one widget from the group each time by DELETION.
+     * Upon number of elements ||G|| <= 1, group G is deleted, namely no widgets associated to the groupid.
+     * valid case.
+     */
+    @Test(groups = ["feature"])
+    def void deleteGoupedWidgetsOneByOne() {
+        def projectNameInTest = 'DeleteGroupedWidgetsOneByOne'
+        def resp
+        def project = new Project()
+        def chapter = new Chapter()
+        def common = new Common()
+        def idoc = new IDoc()
+        def filename = 'GroupedWidgets.idoc'
+        def filenameWithPath = "testData/${filename}"
+        def chapterNameInTest   = 'PageWithGroupedwidgets'
+        def content = new Content()
+        def widget = new Widget()
+
+        // Load the iDoc with grouped widgets, so far the widgets are grouped in legacy studio --20140923.
+        resp = idoc.upload(projectNameInTest, '', filenameWithPath, filename)
+        assertEquals(resp.status, 201, 'idoc file not loaded')
+
+        // Get a projectId from a given project name
+        resp = project.getAll()
+        assertTrue(resp.data.projects.size() >= 1, "There should be at least one project in system.")
+
+        def projectidInTest = getProjectIdByNameFromResp(projectNameInTest, resp)
+        assertTrue(projectidInTest!= null && ((String)projectidInTest).length() == UUIDStringLength, "The project id is in valid form.")
+
+        // Get contentId of the chapter with grouped widgets by name.
+        resp = chapter.getAll(projectidInTest)
+        assertTrue(resp.data.chapters.size() >= 1, "There should be at least one chapter in system.")
+        def contentIdInTest = getContentIdByChapterName(chapterNameInTest,resp)
+        assertTrue(contentIdInTest!= null && ((String)contentIdInTest).length() == UUIDStringLength, "The content id is in valid form.")
+
+        // Read widets from a chapter, put widgets' IDs to a list
+        resp = content.get(projectidInTest, contentIdInTest)
+        assertEquals(resp.status, 200, "fail get content")
+        assertTrue(resp.data.content.widgets.size() >= 1,  "There should be at least one widget in the content.")
+
+        def allWidgetsList = resp["responseData"] ["content"]["widgets"]
+
+        // Get first grouped widget's groupid
+        def gidOfFirstGroupedWidget = getTheFirstGroupId (resp)
+        assertTrue(gidOfFirstGroupedWidget!= null && ((String)gidOfFirstGroupedWidget).length() == UUIDStringLength, "The group id is in valid form.")
+
+        // Delete widget from the list one by one
+        // TODO verify group still exists or not
+        def size = allWidgetsList.size
+        def noDeleted = 0
+        for ( def e in allWidgetsList ) {
+            resp = widget.delete(projectidInTest, e["id"])
+            assertEquals(resp.status, 200, "fail widget delete")
+            ++noDeleted
+            if (noDeleted <= size-2) {
+                assertTrue( checkGroupExisting(content, projectidInTest, contentIdInTest, gidOfFirstGroupedWidget), "Group should exist.")
+            } else {
+                assertTrue( !checkGroupExisting(content, projectidInTest, contentIdInTest, gidOfFirstGroupedWidget), "Group should not exist.")
+            }
+        }
+
+        // Delete the project
+        resp = project.delete(projectidInTest)
+        assertEquals(resp.status, 200 , "fail delete project")
+    }
+
+    def checkGroupExisting(content, projectidInTest, contentIdInTest, gidOfFirstGroupedWidget) {
+        def result = false
+        def resp = content.get(projectidInTest, contentIdInTest)
+        assertEquals(resp.status, 200, "fail get content")
+        for ( e in resp["responseData"] ["content"]["widgets"] ) {
+            if (e["groupId"] != null && ( (String) e["groupId"]).length() == UUIDStringLength
+                 && ((String) e["groupId"]).equalsIgnoreCase(gidOfFirstGroupedWidget )) {
+                result = true
+                break
+            }
+        }
+       return result
+    }
+
+    /**
+     * Create a iDoc with a lot grouped widgets. ||G|| >> 3.
+     * Load the iDoc as test prerequisite and validate all widgets belonging to the same group. valid case.
      */
     @Test(groups = ["feature"])
     def void testLoadIdocWithGroupedWidgets() {
@@ -88,10 +168,10 @@ class TestWidgetsGrouping {
 
 
     /**
-     * TODO change desc
-     *  Create a iDoc with a lot grouped widgets.
-     *  ||G|| >> 3. Load the iDoc as test prerequisite and
-     *  validate all widgets belonging to the same group. valid case.
+     * Load an iDoc with with widgets partially grouped.
+     * Reading each widget of a project, a container,
+     * a chapter etc will get the widget's groupid.
+     * The id should be in valid format, UUID string or null. Valid case.
      */
     @Test(groups = ["feature"])
     def void testLoadIdocWithPartiallyGroupedWidgets() {
@@ -130,12 +210,12 @@ class TestWidgetsGrouping {
         assertEquals(resp.status, 200, "fail get content")
         assertTrue(resp.data.content.widgets.size() >= 1,  "There should be at least one widget in the content.")
 
-        // TODO Get first widget that has a groupid/ first grouped widget
+        // Get first widget that has a groupid/ first grouped widget
         def gidOfFirstGroupedWidget = getTheFirstGroupId (resp)
         //resp["responseData"] ["content"]["widgets"][0]["groupId"]
         //assertTrue(gidOfFirstWidget!= null && ((String)gidOfFirstWidget).length() == UUIDStringLength, "The group id is in valid form.")
 
-        // TODO There are widgets not grouped in this content
+        // There are widgets not grouped in this content
         def c = 0
         for ( def e in resp["responseData"] ["content"]["widgets"] ) {
             //assertTrue( ((String )e["groupId"]).equalsIgnoreCase(gidOfFirstGroupedWidget), "All widgets in this content belong to the same group.")
@@ -150,6 +230,7 @@ class TestWidgetsGrouping {
         resp = project.delete(projectidInTest)
         assertEquals(resp.status, 200 , "fail delete project")
     }
+
 
     def getTheFirstGroupId (resp) {
         for ( e in resp["responseData"] ["content"]["widgets"] ) {
