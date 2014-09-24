@@ -13,6 +13,7 @@ import org.testng.annotations.Test
 import static groovy.json.JsonOutput.prettyPrint
 import static groovy.json.JsonOutput.toJson
 import static org.testng.Assert.assertEquals
+import static org.testng.Assert.assertTrue
 
 /**
  * Created by zwang on 9/22/14.
@@ -26,6 +27,83 @@ class TestWidgetsGrouping {
      * Test delete all widgets from a group, the group is deleted.
      * Test delete N-1 widgets from a group, the group is deleted.
      */
+
+    /**
+     *  Create a iDoc with a lot grouped widgets.
+     *  ||G|| >> 3. Load the iDoc as test prerequisite and
+     *  validate all widgets belonging to the same group. valid case.
+     */
+    @Test(groups = ["feature"])
+    def void testLoadIdocWithGroupedWidgets() {
+        def projectNameInTest = 'GroupedWidgets'
+        def resp
+        def project = new Project()
+        def chapter = new Chapter()
+        def common = new Common()
+        def idoc = new IDoc()
+        def filename = 'GroupedWidgets.idoc'
+        def filenameWithPath = "testData/${filename}"
+        def chapterNameInTest   = 'PageWithGroupedwidgets'
+        def content = new Content()
+
+
+        // Load the iDoc with grouped widgets, so far the widgets are grouped in legacy studio --20140923.
+        resp = idoc.upload(projectNameInTest, '', filenameWithPath, filename)
+        assertEquals(resp.status, 201, 'idoc file not loaded')
+
+        // Get a projectId from a given project name
+        resp = project.getAll()
+        assertTrue(resp.data.projects.size() >= 1, "There should be at least one project in system.")
+
+        def projectidInTest = getProjectIdByNameFromResp(projectNameInTest, resp)
+        assertTrue(projectidInTest!= null && ((String)projectidInTest).length() == 32, "The project id is in valid form.")
+
+        // Get contentId of the chapter with grouped widgets by name.
+        resp = chapter.getAll(projectidInTest)
+        assertTrue(resp.data.chapters.size() >= 1, "There should be at least one chapter in system.")
+        def contentIdInTest = getContentIdByChapterName(chapterNameInTest,resp)
+        assertTrue(contentIdInTest!= null && ((String)contentIdInTest).length() == 32, "The project id is in valid form.")
+
+
+        // Read widets from a chapter
+        resp = content.get(projectidInTest, contentIdInTest)
+        assertEquals(resp.status, 200, "fail get content")
+        assertTrue(resp.data.content.widgets.size() >= 1,  "There should be at least one widget in the content.")
+
+        // Get first widget's groupid
+        def gidOfFirstWidget = resp["responseData"] ["content"]["widgets"][0]["groupId"]
+        assertTrue(gidOfFirstWidget!= null && ((String)gidOfFirstWidget).length() == 32, "The group id is in valid form.")
+
+        // All widgets in this content will have the same groupid
+        for ( def e in resp["responseData"] ["content"]["widgets"] ) {
+            assertTrue( ((String )e["groupId"]).equalsIgnoreCase(gidOfFirstWidget ), "All widgets in this content belong to the same group.")
+            //println e["groupId"] +'  '+gidOfFirstWidget
+        }
+
+        // Delete the project
+        resp = project.delete(projectidInTest)
+        assertEquals(resp.status, 200 , "fail delete project")
+    }
+
+
+    def getProjectIdByNameFromResp(projectName, resp) {
+        for ( e in resp["responseData"] ["projects"] ) {
+            if ( projectName.equalsIgnoreCase( e["projectName"] )) {
+                return e["projectId"]
+            }
+        }
+        return ''
+    }
+    def getContentIdByChapterName(chapterName,resp) {
+        for ( def e in resp["responseData"] ["chapters"] ) {
+            if (chapterName.equalsIgnoreCase(e["name"])) {
+                return e["content"]["id"]
+            }
+        }
+        return ''
+    }
+    //////////////////////////////////////////////////////////////////////
+    //// Below this line are experimental code. To be cleaned up.     ////
 
     def menulist = [[type: "MENU_ITEM", properties: [showOn: "Hover", showIfCurrent: "true", text: "Save"]],
                     [type: "MENU_ITEM", properties: [showOn: "Hover", showIfCurrent: "true", text: "File"]]
@@ -91,7 +169,7 @@ class TestWidgetsGrouping {
     }
 
     @Test(groups = ["feature"])
-    def void testLoadIdocAndVerifyGroup() {
+    def void testLoadIdocAndVerifyGroupbk() {
         def resp
         def project = new Project()
         def chapter = new Chapter()
@@ -203,7 +281,7 @@ class TestWidgetsGrouping {
 
 
 
-        common.deleteAllProjects();
+        //common.deleteAllProjects();
 
 
     }
