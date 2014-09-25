@@ -103,8 +103,11 @@ class TestWidgetsGrouping {
             break // One shot business
         }
         // Delete the project
+        log.info("Congratulation, ${getCurrentTestNominal (Thread.currentThread().getStackTrace())} passed!")
         resp = project.delete(projectidInTest)
         assertEquals(resp.status, 200 , "fail delete project")
+        //TODO
+        log.warn("Congratulation, ${getCurrentTestNominal (Thread.currentThread().getStackTrace())} passed!")
 
     }
 
@@ -720,10 +723,11 @@ class TestWidgetsGrouping {
     }
     //TODO get the test nominal
     //log.info("Congratulation ${getCurrentTestNominal ((String)Thread.currentThread().getStackTrace())} passed!")
-    def getCurrentTestNominal (String stack) {
+    def getCurrentTestNominal ( stack) {
         def result = "Test name not available"
-        for (String s : stack.split("\\s+") ) {
-            if (s.contains("com.irise")) {
+
+        for (def s : stack ) {
+            if ( ( s.toString()).contains("com.irise") ) {
                 result = s;
                 break;
             }
