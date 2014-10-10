@@ -16,11 +16,11 @@
 **/.settings/
 **/.loadpath
 **//src/main/resources/rebel.xml
-**/# External tool builders
+# External tool builders
 **/.externalToolBuilders/
-**/# Locally stored "Eclipse launch configurations"
+# Locally stored "Eclipse launch configurations"
 **/*.launch
-**/# CDT-specific
+# CDT-specific
 **/.cproject
-**/# PDT-specific
+# PDT-specific
 **/.buildpath
