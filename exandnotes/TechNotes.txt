@@ -1,151 +1,25 @@
+#Intellij import suggestion
+ALT ENTER
+
+
+# regex not a character, regex not a literal
+[^ \t]println
+# regex uncommented println
+^[ \t]*println
+
 ====HISTORY 20141010 ===
    70  cd ../dev-tools/scripts/
-   71   ./debug-dc.sh --war /Users/zwang/dcmlui/dc/muse-dc-web/target/muse-dc-web-9.0.5-SNAPSHOT.war --license-file /Users/zwang/dcmlui/dev-tools/scripts/irise.license --debug-port 5005 -Dcom.sun.management.jmxremote 
-   72  cd ~/Documents/irise/irise-service-test
-   73  git pull
-   74  history 
-   75  history | grep -i url
    76  git remote set-url origin git@github.com:irise/irise-service-test.git
-   77  git pull
-   78  git log
-   79  history | grep -i url
-   80  git remote set-url origin git@github.com:wangzhikai/irise-service-test.git
-   81  git pull
-   82  git status
-   83  git diff
-   84  git status
-   85  git add src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-   86  git commit -m "DEBUG verifyGroupUngroupOfSameWidgets"
-   87  git push
-   88  git status
-   89  git add src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-   90  git commit -m "unGroupStandAloneWidgets"
-   91  git push
-   92  git status
-   93  git add src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-   94  git commit -m "verifyGroupUngroupOfSameWidgets delayed loop of verifications not helping"
-   95  git push
-   96  malloc
-   97  clear
-   98  pwd
-   99  git status
-  100  git add src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  101  git commit -m "Put single delay 1000ms, verifyGroupUngroupOfSameWidgets() gets 100 against 0 failure"
-  102  git push
-  103  git log
-  104  clear
-  105  git status
-  106  git add src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  107  git commit -m "Test updateProperitiesOfWholeGroup ()"
-  108  git push
-  109  man set
-  110  debug
-  111  clear
-  112  shopt
-  113  hostname
-  114  strace
-  115  clear
-  116  locate trace
-  117  clear
-  118  touch '-'
-  119  ls
-  120  rm '-'
-  121  ;s
-  122  ls
-  123  clear
-  124  history
-  125  clear
-  126  ls
-  127  pwd
-  128  clear
-  129  pwd
-  130  cd ~/Documents/irise/irise-service-test
-  131  git status
-  132  git diff
-  133  vlrst
-  134  celar
-  135  cls
-  136  clear
-  137  roll
-  138  rock
-  139  rock
-  140  pushd
-  141  popd
-  142  pushd .
-  143  cd ~
-  144  popd
-  145  cd -
-  146  ls -
-  147  ls '-'
-  148  ls ""
-  149  ls "-"
-  150  ls "${}"
-  151  ls "${-}"
-  152  ls "${-}"
-  153  ls "$-"
-  154  ls '$-'
-  155  tail -f ~/201410276restsaves.txt 
-  156  exit
-  157  fg
-  158  fg
-  159  ps aux
-  160  exit
-  161  cd ~/dcmlui/
-  162  cd suite
-  163  git pull
-  164  history | grep -i skip
-  165   mvn clean install -DskipTests -Dcobertura.skip
-  166  cd ../dc
-  167  git pull
-  168   mvn clean install -DskipTests -Dcobertura.skip
-  169  cd ../dev-tools/scripts/
-  170  ls
-  171  history | grep -i debug
-  172  pwd
-  173  clear
-  174  /Users/zwang/dcmlui/dev-tools/scripts/debug-dc.sh --war /Users/zwang/dcmlui/dc/muse-dc-web/target/muse-dc-web-9.0.5-SNAPSHOT.war --license-file /Users/zwang/dcmlui/dev-tools/scripts/irise.license --debug-port 5005 -Dcom.sun.management.jmxremote 1>>/Users/zwang/dcmlui/dclog.txt 2>> /Users/zwang/dcmlui/dclog.txt &
-  175  tail -f /Users/zwang/dcmlui/dclog.txt
-  176  pwd
-  177  cd ~/Documents/irise/irise-service-test
-  178  git status
-  179  git add src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  180  git commit -m "updateProperitiesOfPartGroup() can update"
-  181  git push
-  182  git status
+
+# touch hyphen
+touch '-'
+
   183  git add  src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  184  git commit -m "Refactor point"
-  185  git push
-  186  git add  src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  187  git commit -m "Concept proved keepProjectAndSaveRestForDebug in test updateProperitiesOfPartGroup"
-  188  git push
-  189  git add  src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  190  git commit -m "Transaction test delayBatchUpDateInBetween"
-  191  git push
-  192  exit
-  193  cd ~/mlui
-  194  cd ~/dcmlui/
-  195  ls
-  196  cd suite
-  197  git pull
-  198  git log
-  199  history | grep cober
-  200   mvn clean install -DskipTests -Dcobertura.skip
+
   201  cd ../dc
   202  git pull
   203  git remote show origin
   204  history | grep fetch
-  205  history lss
-  206  history | less
-  207  history | grep mlui
-  208  history
-  209  history | less
-  210  cd ../suite/
-  211  git fetch mlui
-  212  git rebase mlui/studio54_lite
-  213  git pull
-  214  git log -5 --oneline
-  215   mvn clean install -DskipTests -Dcobertura.skip
-  216  cd ../dc
   217  git fetch mlui
   218  git rebase mlui/studio54_lite
   219  git log -5 --oneline
@@ -159,100 +33,13 @@
   227  tail -f /Users/zwang/dcmlui/dclog.txt 
   228  fg
   229  fg
-  230  cd ~/mlui
-  231  cd ~/dcmlui/
-  232  ls
-  233  cd dc
-  234  grep -i lock -R .
-  235  exit
-  236  /Users/zwang/dcmlui/dev-tools/scripts/debug-dc.sh --war /Users/zwang/dcmlui/dc/muse-dc-web/target/muse-dc-web-9.0.5-SNAPSHOT.war --license-file /Users/zwang/dcmlui/dev-tools/scripts/irise.license --debug-port 5005 -Dcom.sun.management.jmxremote 1>>/Users/zwang/dcmlui/dclog.txt 2>> /Users/zwang/dcmlui/dclog.txt &
-  237  tail -f /Users/zwang/dcmlui/dclog.txt 
-  238  fg
-  239  exit
-  240  cd ~/dcmlui/
-  241  ls
-  242  cd ~/Documents/irise
-  243  cd irise-service-test
-  244  ls
-  245  cd testData/
-  246  pwd
-  247  ls
-  248  pwd
-  249  cd ..
-  250  git status
-  251  git add src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  252  git commit -m "investigateBlackListedWidgets"
-  253  git push
-  254  git add src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  255  git commit -m "copyPasteAGroup"
-  256  git push
-  257  git pull
-  258  git add src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  259  git commit -m "copyPasteProperSubSetOfAGroup"
-  260  git push
-  261  ifconfig
-  262  ls ~/dcmlui/
-  263  ls -lt ~
-  264  ls -lt ~
-  265  tail -f  20141006restsaves.txt
-  266  ifconfig
-  267  cd ~/dcmlui/
-  268  cd suite/
-  269  git pull
-  270  history
-  271   mvn clean install -DskipTests -Dcobertura.skip
-  272   mvn clean install -DskipTests -Dcobertura.skip
-  273   mvn clean install -DskipTests -Dcobertura.skip
-  274  ping irlaeng06.ircorp.com
-  275  pwd
-  276  exit
-  277  cd ~/dcmlui/suite/
-  278  git pull
-  279   mvn clean install -DskipTests -Dcobertura.skip
-  280   mvn clean install 
-  281  mvn download
-  282   mvn clean install -DskipTests -Dcobertura.skip
-  283  vim pom.xml 
-  284  grep aspect pom.xml 
-  285  grep aspect -R .
-  286  grep aspect -R .
-  287  grep aspect -R . > ../grep.txt
-  288  vim ../grep.txt 
-  289  vim ./irise-core/pom.xml
-  290  git log
-  291   mvn clean install -DskipTests -Dcobertura.skip
-  292  vim /Users/zwang/.m2/repository/org/codehaus/mojo/aspectj-maven-plugin/maven-metadata-artifactory.xml
-  293  vim /Users/zwang/.m2/repository/org/codehaus/mojo/aspectj-maven-plugin/maven-metadata-artifactory.xml
-  294  vim /Users/zwang/.m2/repository/org/codehaus/mojo/aspectj-maven-plugin/maven-metadata-artifactory.xml
-  295  vim /Users/zwang/.m2/repository/org/codehaus/mojo/aspectj-maven-plugin/maven-metadata-artifactory.xml
-  296  pwd
-  297   mvn clean install -DskipTests -Dcobertura.skip
-  298  git log
-  299   mvn clean install -DskipTests -Dcobertura.skip
-  300  git log
-  301  git pull
-  302   mvn clean install -DskipTests -Dcobertura.skip
-  303  vim ~/.m2/settings.xml
-  304   mvn clean install -DskipTests -Dcobertura.skip
-  305  ls ~/.m2
-  306  vim ~/.m2/settings.xml
-  307   mvn clean install -DskipTests -Dcobertura.skip
-  308  vim ~/.m2/settings.xml
-  309  caat ~/.m2/settings.xml.bk 
-  310  cat ~/.m2/settings.xml.bk 
-  311  vim ~/.m2/settings.xml.bk 
-  312   mvn clean install 
   313  ls /Users/zwang/.m2/repository
+
+
+# the mvn bug just remove the ~/.m2
   314  vim ~/.m2/settings.xml 
   315  /Users/zwang/.m2/repository
-  316  ls /Users/zwang/.m2/repository
-  317  cd ..
-  318  mv suite suitebk
-  319  history | less
-  320  git clone git@github.com:/mlui/suite.git
-  321  cd suite
-  322  cd suite
-  323  git branch
+
   324  git checkout --track -b studio54_lite mlui/studio54_lite
   325  git fetch mlui
   326   git remote add mlui git@github.com:/mlui/suite.git
@@ -260,18 +47,8 @@
   328  git checkout --track -b studio54_lite mlui/studio54_lite
   329  mvn clean install
   330  cd ~/Documents/irise/irise-service-test
-  331  git pull
-  332  git status
-  333  git add src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  334  git commit -m " cutPasteAGroup "
-  335  git push
-  336  git status
-  337  git add src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  338  git commit -m "cutPastePartOfAGroup"
-  339  git push
-  340  git status
-  341  git add src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  342  git commit -m "groupUnGroupLockedWidgets"
+
+
   343  git push
   344  ifconfig
   345  vim /etc/hosts
@@ -280,222 +57,9 @@
   348  ping irlaeng07.ircorp.com
   349  ifconfig
   350  ping irlaeng07
-  351  diff ~/Desktop/settings.xml ~/.m2/settings.xml 
-  352  cp ~/.m2/settings.xml ~/.m2/settings.xml.bk
-  353  cp ~/Desktop/settings.xml ~/.m2/
-  354  ping ie11three
+
+
   355  sudo vim /etc/hosts
   356  ping ie11three
-  357  ping ie11three
-  358  pwd
-  359  ls
-  360  cd ~/dcmlui/suite
-  361  mvn clean install -DskipTests -Dcobertura.skip -o
-  362  mvn clean -o install -DskipTests -Dcobertura.skip 
-  363  mvn clean -o install 
-  364  mvn clean 
-  365  mvn clean 
-  366  clear
-  367  mvn clean 
-  368  mvn clean -e 
-  369  mvn clean -eX
-  370  mvn clean -e -x
-  371  mvn clean -e -X
-  372  cp ~/.m2 ~/.m2bk
-  373  mv ~/.m2 ~/.m2bk
-  374  mvn clean
-  375  ls ~/.m2
-  376  cp ~/Desktop/settings.xml ~/.m2
-  377  vim ~/.m2/settings.xml 
-  378  ls /user
-  379  ls /users
-  380  rm -rf ~/.m2
-  381  mv ~/.m2bk ~/.m2
-  382  vim ~/.m2/settings.xml 
-  383  mvn clean
-  384  mv ~/.m2 ~/.m2bk
-  385  mvn clean
-  386  ls ~/.m2
-  387  ls -lat ~/.m2
-  388  cp ~/Desktop/settings.xml ~/.m2
-  389  vim ~/.m2
-  390  vim ~/.m2/settings.xml 
-  391  mvn clean
+
   392  mvn clean install -DskipTests -Dcobertura.skip 
-  393  cd ..
-  394  cd dc
-  395  cd ..
-  396  ls
-  397  rm -rf suitebk/
-  398  cd dc
-  399  git pull
-  400  git log
-  401  git remote show origin
-  402  git fetch mlui
-  403  git rebase mlui/studio54_lite
-  404  git log -5 --oneline
-  405  mvn clean install -DskipTests -Dcobertura.skip
-  406  cd ../dev-tools/scripts/
-  407  /Users/zwang/dcmlui/dev-tools/scripts/debug-dc.sh --war /Users/zwang/dcmlui/dc/muse-dc-web/target/muse-dc-web-9.0.5-SNAPSHOT.war --license-file /Users/zwang/dcmlui/dev-tools/scripts/irise.license --debug-port 5005 -Dcom.sun.management.jmxremote 1>>/Users/zwang/dcmlui/dclog.txt 2>> /Users/zwang/dcmlui/dclog.txt &
-  408  tail -f  /Users/zwang/dcmlui/dclog.txt
-  409  fg
-  410  tail -f  /Users/zwang/dcmlui/dclog.txt
-  411  cd ~/dcmlui/
-  412  ls
-  413  cd suite/
-  414  git pull
-  415  mvn clean install -DskipTests -Dcobertura.skip 
-  416  cd ../dc
-  417  git pull
-  418  mvn clean install -DskipTests -Dcobertura.skip 
-  419  cd ../dev-tools/
-  420  ls
-  421  ls
-  422  cd scripts/
-  423  /Users/zwang/dcmlui/dev-tools/scripts/debug-dc.sh --war /Users/zwang/dcmlui/dc/muse-dc-web/target/muse-dc-web-9.0.5-SNAPSHOT.war --license-file /Users/zwang/dcmlui/dev-tools/scripts/irise.license --debug-port 5005 -Dcom.sun.management.jmxremote 1>>/Users/zwang/dcmlui/dclog.txt 2>> /Users/zwang/dcmlui/dclog.txt &
-  424  tail -f  /Users/zwang/dcmlui/dclog.txt
-  425  fg
-  426  /Users/zwang/dcmlui/dev-tools/scripts/debug-dc.sh --war /Users/zwang/dcmlui/dc/muse-dc-web/target/muse-dc-web-9.0.5-SNAPSHOT.war --license-file /Users/zwang/dcmlui/dev-tools/scripts/irise.license --debug-port 5005 -Dcom.sun.management.jmxremote 1>>/Users/zwang/dcmlui/dclog.txt 2>> /Users/zwang/dcmlui/dclog.txt &
-  427  tail -f  /Users/zwang/dcmlui/dclog.txt
-  428  fg
-  429  exit
-  430  cd ~/Documents/irise/irise-service-test
-  431  git status
-  432  git add  src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  433  git commit -m "testNestedContainers "
-  434  git push
-  435  git add  src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  436  git commit -m "moveRemoveGroupFromContainer "
-  437  git push
-  438  git add  src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  439  git commit -m " groupWidgetsInDifferentContainers "
-  440  git push
-  441  git pull
-  442  git add  src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  443  git commit -m " Grouping: group a section and a widget. The widgets contained by the section are not included in the group. Valid case."
-  444  git push
-  445  git add  src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  446  git commit -m " Groupinp undo redo"
-  447  git push
-  448  git pull
-  449  git add  src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  450  git commit -m "testGroupConditionalHTML "
-  451  git push
-  452  git add  src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  453  git commit -m "testBlacklistedChapterWithIllegalGroup"
-  454  git push
-  455  sudo vim /etc/hosts
-  456  traceroute 74.125.225.239
-  457  ifconfig
-  458  cd ~/dcmlui/
-  459  cd suite/
-  460  git pull
-  461  git pull
-  462  mvn clean install -DskipTests -Dcobertura.skip 
-  463  cd ../dc
-  464  git pull
-  465  mvn clean install -DskipTests -Dcobertura.skip 
-  466  cd ../dev-tools/scripts/
-  467  history
-  468  /Users/zwang/dcmlui/dev-tools/scripts/debug-dc.sh --war /Users/zwang/dcmlui/dc/muse-dc-web/target/muse-dc-web-9.0.5-SNAPSHOT.war --license-file /Users/zwang/dcmlui/dev-tools/scripts/irise.license --debug-port 5005 -Dcom.sun.management.jmxremote 1>>/Users/zwang/dcmlui/dclog.txt 2>> /Users/zwang/dcmlui/dclog.txt &
-  469   tail -f  /Users/zwang/dcmlui/dclog.txt
-  470  fg
-  471  sudo vim /etc/hosts
-  472  ping irises-mbp-6
-  473  /Users/zwang/dcmlui/dev-tools/scripts/debug-dc.sh --war /Users/zwang/dcmlui/dc/muse-dc-web/target/muse-dc-web-9.0.5-SNAPSHOT.war --license-file /Users/zwang/dcmlui/dev-tools/scripts/irise.license --debug-port 5005 -Dcom.sun.management.jmxremote 1>>/Users/zwang/dcmlui/dclog.txt 2>> /Users/zwang/dcmlui/dclog.txt &
-  474   tail -f  /Users/zwang/dcmlui/dclog.txt
-  475  FG
-  476  fg
-  477  exit
-  478  ls
-  479  cd ~/Documents/irise/irise-service-test
-  480  git status
-  481  git add testData/GroupedWidgets.idoc
-  482  git add testData/GroupedWidgetsWithoutDisabled.idoc
-  483  git commit -m "Change some idocs to speed up tests"
-  484  git push
-  485  git status 
-  486  git add src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  487  git commit -m "moveRemoveWhiteListGroupFromContainer"
-  488  git push
-  489  git status
-  490  git add src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-  491  git add testData/BlackListedChapterWithIlleagalGroup.idoc
-  492  git commit "Grouping clean up for review"
-  493  git commit -m "Grouping clean up for review"
-  494  git push
-  495  git pull
-  496  exit
-  497  ifconfig
-  498  ping ie11three
-  499  sudo vim /etc/hosts
-  500  exit
-  501  sudo vim /etc/hosts
-  502  ifconfig
-  503  cd ~/Desktop/
-  504  ls
-  505  git clone git@github.com:wangzhikai/tempsave
-  506  cd tempsave/
-  507  mkdir exandnotes
-  508  vim .gitignore
-  509  pwd
-  510  find .
-  511  ls
-  512  mkdir exandnotes
-  513  pwd
-  514  git status
-  515  cd exandnotes/
-  516  git status
-  517  cd ..
-  518  git add . exandnotes/
-  519  find
-  520  find .
-  521  git status
-  522  vim exandnotes/LoocaTea/.gitignore
-  523  git status
-  524  vim .gitignore
-  525  git status
-  526  vim .gitignore
-  527  cp .gitignore .bkgitignore
-  528  vim .gitignore
-  529  git status
-  530  vim ~/.gitconfig
-  531  git add .gitignore 
-  532  git commit -m ".gitignore for Eclipse"
-  533  git status
-  534  git reset --hard HEAD~1
-  535  git status
-  536  git log
-  537  git status
-  538  git push
-  539  git pull
-  540  git status
-  541  ls -la
-  542  cp .bkgitignore .gitignore
-  543  vim .gitignore 
-  544  git add .gitignore 
-  545  git commit -m ".gitignore"
-  546  git push
-  547  git pull
-  548  git status
-  549  rm .bkgitignore 
-  550  vim .gitignore 
-  551  ls
-  552  ls exandnotes/
-  553  cd ..
-  554  ls -lat
-  555  cd tempsave/
-  556  ls -lat
-  557  cd exandnotes/
-  558  ls -lat
-  559  ls -lat LoocaTea/
-  560  git log
-  561  git head
-  562  ls -lat
-  563  cd ..
-  564  ls -lat
-  565  cd .git
-  566  ls -lat
-  567  cd ..
-  568  pwd
-  569  history >> exandnotes/TechNotes.txt 
