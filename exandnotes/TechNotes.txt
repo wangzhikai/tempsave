@@ -1,3 +1,5 @@
+ git status | grep 'deleted' | sed 's/deleted://' | xargs -I{} git rm {}
+====
 #Intellij import suggestion
 ALT ENTER
 
