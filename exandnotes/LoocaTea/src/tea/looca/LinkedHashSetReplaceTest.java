@@ -16,7 +16,7 @@ public class LinkedHashSetReplaceTest {
 		 * TODO QUESTION Java LinkedHashMap?
 		 * TODO GUESS: Yes. 
 		 * TODO ANSWER: Yes.
-		 * TOOD NOTE: Basically, set is not preferably less advantageous than map. 
+		 * TOOD NOTE: Basically, set is not preferably more advantageous than map. 
 		 */
 		Map<String, String> hashMapStrStr = new HashMap<String,String> ();
 		Map<String, String> linkedHashMapStrStr = new LinkedHashMap<String,String> ();
@@ -55,6 +55,9 @@ public class LinkedHashSetReplaceTest {
 		System.out.println(arrayStr.getClass());
 		System.out.println(arrayStr);
 		Iterator<String> it = setStr.iterator();
+		//Entry is an Interface
+		//Entry <String,?>   e = new Entry<String,?> ();
+		
 		
 	}
 

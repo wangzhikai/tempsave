@@ -1,3 +1,74 @@
+215  git remote set-url origin git@github.com:/iRise/irise-service-test
+  218   git remote set-url origin git@github.com:wangzhikai/irise-service-test.git
+
+======
+Dev log of TestWidgetsLocking 20141014
+    /**
+     * TODO Done getLevelOneSubNotesIds(): static def getLevelOneSubNotesIds(content,projectId, chapterContentId,containerKey)
+     * TODO Done test, groovy synchronized widgetsTypesCounters: synchronized def getAWidgetTypeCount (String type)
+     * NOTE: if get method is synchronized, you don't have to use concurrent map or atomic stuff, but get() has to be synchronized
+     * NOTE: this consideration is not necessary, since DC-wise widgets counter is not in the testing JVM instance. It tallers this program's cap, namely a distributed synchronized counter.
+     * TODO Done QUESTION Java LinkedHashSet can replace a given node, without alternating the iteration sequence.
+     * The answer is do not use set, use map instead.
+     * TODO Done create standAloneWidgets[type_1, type_2]
+     * [deprecated 20141014 BEG]
+     * TODO Done Single widget create map:
+     * 1. Required root attributes must be provided according to widgetCreateAttributes
+     * NOTE: You cannot use addAll or putAll since you have to check required fields.
+     * 2. Additional root attributes will be appended
+     * 3. Required properties for create will use default
+     * 4. Required properties can be changed than default
+     * 5. Additional properties can be appended
+     * 6. Handling conditional HTML
+     * 7. Test create widgets
+     * 8. Conditional_HTML create prop
+     * 9. Use typesNamesPropsVector
+     * [deprecated 20141014 END]
+     * TODO Done Single widget create json : static def getSingleWidgetCreateJson(common,containerKey,rootCreateVector,propCreateVector)
+     * TODO Done : static def getWidgetMap (common,containerKey,requiredRootAttributes, requiredProps, rootCreateVector,propCreateVector)
+     * TODO Done Change set to map<IdAsString,?>
+     * TODO Done Create batchWidgets[type_b_3, type_b_4]
+     * TODO Done Refactor widgets creation : def getWidgetCreateElement (String tp,String tag,int n)
+     * TODO Done Refactor assert resp
+     * TODO Done Test java map addAll update all values, append keys new
+     * TODO Done getWidgetMap
+     * The case of widget creation
+     * 1. This case is identified by function parameter widgetNodeInResp is an empty map  [:].
+     * 2. Required root attributes are defined in requiredRootAttributes. All values must be provided by map newRootValues, or assert failure.
+     * 3. After required root attributes are filled in, additional root attributes can be appended from newRootValues. AddAll should suffice.
+     * 4. Required properties will be created from default, passed by parameter requiredProps
+     * 5. Required properties will be updated by addAll of newPropValues map
+     * The case of widget update
+     * 1. This case identified by function parameter widgetNodeInResp is not an empty map.
+     * 2.  Required root attributes are defined in requiredRootAttributes.
+     * For each key, first try to get it from widgetNodeInResp. If found, the given value can be changed by newRootValues.
+     * If not found, try to get it from newRootValues. If either fails, assert failure.
+     * 3. After required root attributes are filled in, additional root attributes can be appended from newRootValues. AddAll should suffice.
+     * 4. Required properties will be created from default, passed by parameter requiredProps
+     * 5. Required properties will be update by values from widgetNodeInResp['properties']. Then addAll from newPropValues.
+     * TODO Done Create stand-alone widget, update stand-alone widget
+     * TODO Done Verify this method can also find a widgetNodeInResp : static def findAContainerInRespByUUID(node, UUID)
+     * TODO Done Given a widget (a node in Resp), update from a new Resp, catch all new stuff, remove deprecated: just replace.
+     * TODO Done Single widget update map
+     * TODO Done Lock/unlock standAloneWidgets[type_1, type_2], two transactions
+     * TODO Done Lock/unlock batchWidgets[type_b_1, type_b_2], one transaction
+     * TODO Done Update widget(s) in batch
+     * getBatchWidgetsUpdateMap(common,widgetsMap,containerKey,widgetRootUpdateVector,widgetPropUpdateVector)
+     * getBatchWidgetsUpdateJson(common,widgetsMap,containerKey,widgetRootUpdateVector,widgetPropUpdateVector)
+     * TODO Done Basic lock/unlock on white-list widgets, valid case.
+     * TODO Done Verify that multiple widgets can be locked/unlocked at one go, valid case.
+     * Lock/unlock batchWidgets[type_b_1, type_b_2], one transaction
+     * TODO Done Lock lock assert unlock unlock assert
+     * TODO Done
+     * TODO Done
+     * TODO COMMIT POINT, review and save to tech notes
+     * TODO CONSIDERING Put common, project, widget, chapter etc in a map.
+     * TODO CONSIDERING Refactor getContentIdByChapterName, getChapterIdByChapterName
+     * TODO CONSIDERING Test create CONDITIONAL_HTML
+     */
+==== Basically, set is not preferably more advantageous than map. 
+See LinkedHashSetReplaceTest
+
  git status | grep 'deleted' | sed 's/deleted://' | xargs -I{} git rm {}
 ====
 #Intellij import suggestion
