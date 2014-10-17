@@ -1,0 +1,55 @@
+            {
+                "name": "CHECKBOX_1",
+                "properties": {
+                    "hidden": "false",
+                    "locked": "true",
+                    "z": "21",
+                    "disabled": "false",
+                    "push": "true",
+                    "y": "10",
+                    "x": "10"
+                },
+                "id": "786b529e35d04910bf8822589e58a816",
+                "type": "CHECKBOX",
+                "triggers": [],
+                "chapterId": "cecf1ad016e74ab7bed72691882f3e0c",
+                "children": [],
+                "projectId": "78df74c003a64a028547f059e4821e29",
+                "containerKey": "64efb3ab349b442f80ad9e51838e7e36"
+
+http://localhost:8080/iRise/ds/projects/78df74c003a64a028547f059e4821e29/widgets/786b529e35d04910bf8822589e58a816
+{
+    "name": "CHECKBOX_1",
+    "type": "CHECKBOX",
+    "id": "786b529e35d04910bf8822589e58a816",
+    "containerKey": "64efb3ab349b442f80ad9e51838e7e36",
+    "properties": {
+        "push": "true",
+        "hidden": "false",
+        "x": "1",
+        "y": "1",
+        "z": "0",
+        "disabled": "false"
+    }
+}
+
+
+            {
+                "name": "CHECKBOX_1",
+                "properties": {
+                    "hidden": "false",
+                    "locked": "false",
+                    "z": "0",
+                    "disabled": "false",
+                    "push": "true",
+                    "y": "1",
+                    "x": "1"
+                },
+                "id": "786b529e35d04910bf8822589e58a816",
+                "type": "CHECKBOX",
+                "triggers": [],
+                "chapterId": "cecf1ad016e74ab7bed72691882f3e0c",
+                "children": [],
+                "projectId": "78df74c003a64a028547f059e4821e29",
+                "containerKey": "64efb3ab349b442f80ad9e51838e7e36"
+            },

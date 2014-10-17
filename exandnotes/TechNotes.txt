@@ -1,3 +1,33 @@
+/**
+ * TODO DONE Verify that locked widgets can be selected and deleted, valid case.
+ * TODO DONE Put common, project, widget, chapter etc in a map: def synchronized getATool (String keyWord)
+ * TODO DONE printChapterURLForRestClient (content,projectIdInTest,contentIdInTest,chapterNameInTest)
+ * TODO DONE map key String case sensitive? Yes, "a" differs "A" as a key.
+ * TODO DONE lock(), unlock()
+ * def protected lockUnlockVerifyOneByOne (x,common,containerKey,widget,projectIdInTest,opVector)
+ * def protected lockUnlockVerifyBatch (x,common,containerKey,widget,projectIdInTest, chapterIdInTest,opVector)
+ * TODO DONE verifyNodeAttributeFromContentResp()
+ * TODO DONE verifyNodeAttributeFromContentResp() //A set of of widgets
+ * static def verifyAttributes(x, attributesVector,resp,expected)
+ * TODO DONE Batch create whiteList widgets: static def createNBatchWhiteListWidgets (N,common,content, widget,tag,projectIdInTest, contentIdInTest, containerKey)
+ * TODO DONE TASK Verify that the locked widgets can be cut/copy, valid case: cut/copied if locked still locked.
+ * TODO DONE QUESTION // def itinerary = [] //class  println itinerary.getClass() java.util.ArrayList
+ * TODO DONE QUESTION Returns false? if (visit[1].equals(chapterIdInTest))
+ * println visit[1].getClass() //class org.codehaus.groovy.runtime.GStringImpl, it behaves differently from Java String class
+ * TODO DONE QUESTION //?? batchWidgets[i] : new LinkedHashMap<String,?> box i to Integer or String, thus key 'i' not exist rather than retrieve element at position i
+ * TODO DONE TASK Verify widgets can be dropped in locked container, valid case.
+ * TODO DONE TASK Verify that lock property can be undo/redo, valid case.
+ * TODO COMMIT POINT
+ * TODO CONSIDERING Refactor getContentIdByChapterName, getChapterIdByChapterName
+ * TODO CONSIDERING Test create CONDITIONAL_HTML
+ * TODO QUESTION At the service layer, do (x,y) change as per the new container?
+ * TODO BUG TASK Verify that the locked widgets can be moved, valid case. To change (x,y) or to move to a different container.
+ * TODO BUG TASK Verify that locking the container also locks its children, valid case. As per DOD-771.
+ * TODO ISSUE see test function. TASK Verify that lock property can be undo/redo, valid case.
+ */
+ 
+
+
 215  git remote set-url origin git@github.com:/iRise/irise-service-test
   218   git remote set-url origin git@github.com:wangzhikai/irise-service-test.git
 
