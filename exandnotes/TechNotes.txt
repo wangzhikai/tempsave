@@ -1,3 +1,33 @@
+MAC fn  up/down, page up/down ctrl-fn  left right file beg file end
+Mac terminal linux console: ctrl-a home ctrl-e end
+VIM ctrl-cmd-a ctrl-cmd-e  gg G 
+=====
+   /**
+     * TODO TASK
+     * TODO TASK CURRENT Verify that CHTML or its view can be locked, valid case.
+     * TODO TASK Verify copying of chapter also copies the Lock property of widgets, valid case.
+     * TODO TASK Verify that the locked widget can be associated to the actions, valid case.
+     * TODO TASK Verify that you can lock localRef, valid case. localRef TBD
+     * TODO TASK Verify that you cannot lock blacklist items ( menu, tables....), invalid case.
+     * TODO TASK Verify creating actions from locked widget, valid case. Actions TBD?
+     * TODO TASK
+     * TODO TASK
+     ﻿* TODO QUESTION At the service layer, do (x,y) change as per the new container?
+     * TODO BUG TASK Verify that the locked widgets can be moved, valid case. To change (x,y) or to move to a different container.
+     * TODO BUG TASK Verify that locking the container also locks its children, valid case. As per DOD-771.
+     * TODO ISSUE see test function. TASK Verify that lock property can be undo/redo, valid case.
+     * Undo redo definitions?
+     */
+=======
+git config --global core.excludesfile ~/.gitignore_global
+vim ~/.gitignore_global
+cat ~/.gitignore_global
+/Users/zwang/Documents/irise/irise-service-test/irise.properties
+.DS_Store
+.DS_Store?
+
+===================================
+
 /**
  * TODO DONE Verify that locked widgets can be selected and deleted, valid case.
  * TODO DONE Put common, project, widget, chapter etc in a map: def synchronized getATool (String keyWord)
