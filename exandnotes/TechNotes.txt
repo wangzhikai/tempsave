@@ -1,3 +1,7 @@
+Ignoring versioned files
+$ git update-index --assume-unchanged irise.properties 
+
+=====
 MAC fn  up/down, page up/down ctrl-fn  left right file beg file end
 Mac terminal linux console: ctrl-a home ctrl-e end
 VIM ctrl-cmd-a ctrl-cmd-e  gg G 
@@ -19,6 +23,7 @@ VIM ctrl-cmd-a ctrl-cmd-e  gg G
      * Undo redo definitions?
      */
 =======
+Ignore un-versioned files
 git config --global core.excludesfile ~/.gitignore_global
 vim ~/.gitignore_global
 cat ~/.gitignore_global
