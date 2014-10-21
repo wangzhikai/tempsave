@@ -1,3 +1,178 @@
+// Has 12 against 100 failure
+
+    /**
+     * TASK Verify that lock property can be undo/redo, valid case.
+     * TODO CURRENT TASK Verify, in the lock aspect, given a stack of transactions, 'undo' will always revoke the top one and pop
+     * the stack, 'redo' would repeat the transaction revoked by the last 'undo'.
+     * Multiple 'redo's would just put one transaction back to the stack.
+     */
+    //@Test(groups = ["feature"])
+    @Test(groups = ["feature"], dataProvider = "DebugRepeatTimesProvider")
+    //@DataProvider(name = "DebugRepeatTimesProvider")
+    def void verifyLockUndoRedo() {
+        def projectNameInTest = getMethodName(getCurrentTestNominal(Thread.currentThread().getStackTrace()).toString())
+        listOfProjectsToRemove.add(projectNameInTest)
+        def final String chapterNameInTest = "ChapterInTest"
+        def resp,json,containerKey
+        assertEquals((resp = g('project').create(projectNameInTest)).status, 201, "fail project create")
+        def projectIdInTest = getProjectIdByNameFromResp(projectNameInTest, resp)
+
+        assertEquals((g('chapter').create(projectIdInTest, (getJsonForDefaultChapter(chapterNameInTest)).toString())).status, 201, "fail chapter create")
+
+        // Get contentId and chapterId of the chapter by name.
+        assertTrue((resp = g('chapter').getAll(projectIdInTest)).data.chapters.size() >= 1, "There should be at least one chapter in system.")
+        def contentIdInTest = getContentIdByChapterName(chapterNameInTest, resp)
+        assertTrue(contentIdInTest != null && ((String) contentIdInTest).length() == UUIDStringLength, "Invalid content id.")
+        def chapterIdInTest = getChapterIdByChapterName(chapterNameInTest, resp)
+        assertTrue(chapterIdInTest != null && ((String) chapterIdInTest).length() == UUIDStringLength, "Invalid chapter id.")
+
+        // PrintChapterURLForRestClient
+        printChapterURLForRestClient (g('content'),projectIdInTest,contentIdInTest,chapterNameInTest)
+
+        // Create batch1
+        def batch1 = createNBatchWhiteListWidgets (1,g('common'),g('content'), g('widget'),'_',projectIdInTest, contentIdInTest, (containerKey= contentIdInTest) )
+        assertEquals(batch1.size(), g('common').widgetTypeList().size(),"Widget batch create failed")
+
+        // Lock batch1
+        lockUnlockVerifyBatch (batch1,g('common'),contentIdInTest,g('widget'),projectIdInTest,chapterIdInTest,[locked:"true"])
+
+        // Undo assert locked equal false
+        //g('UndoRedo').undo(projectIdInTest) //g('UndoRedo').redo(projectIdInTest)
+        resp = g('UndoRedo').undo(projectIdInTest)
+        assertEquals((resp =  g('content').get(projectIdInTest, contentIdInTest)).status, 200, "fail get content")
+        verifyAttributes(batch1, ["properties","locked"],resp,"false")
+
+        // Redo assert locked equal true
+        resp = g('UndoRedo').redo(projectIdInTest)
+        assertEquals((resp =  g('content').get(projectIdInTest, contentIdInTest)).status, 200, "fail get content")
+        verifyAttributes(batch1, ["properties","locked"],resp,"true")
+
+
+
+        int stackDepth = 10;
+        int stopPoint =(int )(Math.random()*(stackDepth-1)) + 1;
+        Stack<String> opStack = new Stack<String>();
+        for (int i = 0; i<stackDepth; i++) {
+            if (((int) (Math.random() * 2)) == 1) {
+                opStack.push("lock".toString());
+            } else {
+                opStack.push("unlock".toString());
+            }
+            // GROOVY UNFRIENDLY (not unfriendly, just not working) : opStack.push( (int )(Math.random()*2) == 1? "lock":"unlock");
+        }
+        Queue<String> opQueue = new LinkedList<String>();
+        //opQueue.addAll(opStack); // WRONG
+        Stack<String> localStack = new Stack<String>();
+        localStack.addAll(opStack);
+        while (!localStack.isEmpty()) {
+            opQueue.add(localStack.pop());
+        }
+        println "opQueue: " + opQueue
+        println "opStack: " + opStack
+
+        // Assure the queue is the reverse of the stack
+        //			while (!opQueue.isEmpty() && !opStack.isEmpty() ) {
+        //				System.out.println(opQueue.poll().toString().equals(opStack.pop().toString()));
+        //			}
+        //			System.out.println("opQueue.isEmpty()="+opQueue.isEmpty()+"\topStack.isEmpty()"+opStack.isEmpty());
+
+        // TODO Need statuses before lastOp
+        // We know last locked is true
+        Stack<String> lastStutasStack = new Stack<String>();
+        lastStutasStack.push("true");
+        while (!opQueue.isEmpty()) {
+            String str = opQueue.poll();
+            if (str.toString().equals("lock")) {
+                // TODO Lock batch1
+                lastStutasStack.push("true");
+                lockUnlockVerifyBatch (batch1,g('common'),contentIdInTest,g('widget'),projectIdInTest,chapterIdInTest,[locked:"true"])
+            } else {
+                // TODO unlock batch1
+                lastStutasStack.push("false");
+                lockUnlockVerifyBatch (batch1,g('common'),contentIdInTest,g('widget'),projectIdInTest,chapterIdInTest,[locked:"false"])
+            }
+        }
+        println "lastStutasStack: " + lastStutasStack
+
+        lastStutasStack.pop()
+
+        int p = 1;
+        String lastOp = null;
+        String lastStatus = null;
+        while ( p++!=stopPoint) {
+            // TODO undo
+            resp = g('UndoRedo').undo(projectIdInTest)
+            // TODO lastOp = pop stack
+            lastOp = opStack.pop();
+            lastStatus = lastStutasStack.pop()
+        }
+
+        assertEquals((resp =  g('content').get(projectIdInTest, contentIdInTest)).status, 200, "fail get content")
+        verifyAttributes(batch1, ["properties","locked"],resp,lastStatus)
+        /*
+        if (lastOp.toString().equals("lock")) {
+            // TODO Assert locked!=true
+            verifyAttributes(batch1, ["properties","locked"],resp,"false")
+        } else {
+            // TODO Assert locked!=false
+            verifyAttributes(batch1, ["properties","locked"],resp,"true")
+        }
+*/
+        /*
+        // TODO Redo
+        resp = g('UndoRedo').redo(projectIdInTest)
+        assertEquals((resp =  g('content').get(projectIdInTest, contentIdInTest)).status, 200, "fail get content")
+        if (lastOp.toString().equals("lock")) {
+            // TODO Assert locked=true
+            verifyAttributes(batch1, ["properties","locked"],resp,"true")
+        } else {
+            // TODO Assert locked=false
+            verifyAttributes(batch1, ["properties","locked"],resp,"false")
+        }
+
+        // TODO Redo, two or more redos equal one redo
+        resp = g('UndoRedo').redo(projectIdInTest)
+        assertEquals((resp =  g('content').get(projectIdInTest, contentIdInTest)).status, 200, "fail get content")
+        if (lastOp.toString().equals("lock")) {
+            // TODO Assert locked=true
+            verifyAttributes(batch1, ["properties","locked"],resp,"true")
+        } else {
+            // TODO Assert locked=false
+            verifyAttributes(batch1, ["properties","locked"],resp,"false")
+        }
+        */
+
+
+        /*
+        // Create batch2
+        def batch2 = createNBatchWhiteListWidgets (1,g('common'),g('content'), g('widget'),'_',projectIdInTest, contentIdInTest, (containerKey= contentIdInTest) )
+        assertEquals(batch2.size(), g('common').widgetTypeList().size(),"Widget batch create failed")
+
+        // Lock batch2
+        lockUnlockVerifyBatch (batch2,g('common'),contentIdInTest,g('widget'),projectIdInTest,chapterIdInTest,[locked:"true"])
+
+        // Unlock batch2
+        lockUnlockVerifyBatch (batch2,g('common'),contentIdInTest,g('widget'),projectIdInTest,chapterIdInTest,[locked:"false"])
+
+        // Redo verify locked:false
+        resp = g('UndoRedo').redo(projectIdInTest)
+        assertEquals((resp =  g('content').get(projectIdInTest, contentIdInTest)).status, 200, "fail get content")
+        verifyAttributes(batch2, ["properties","locked"],resp,"false")
+
+        // TODO It fails here TBD
+        //resp = g('UndoRedo').redo(projectIdInTest)
+        //assertEquals((resp =  g('content').get(projectIdInTest, contentIdInTest)).status, 200, "fail get content")
+        */
+        //verifyAttributes(batch2, ["properties","locked"],resp,"true")
+
+        // Delete the project
+        resp = g('project').delete(projectIdInTest)
+        assertEquals(resp.status, 200, "fail delete project")
+        listOfProjectsToRemove.remove(projectNameInTest.toString())
+        log.warn("Congratulation, ${projectNameInTest} passed!")
+    }
+
+===============
 Ignoring versioned files
 $ git update-index --assume-unchanged irise.properties 
 
