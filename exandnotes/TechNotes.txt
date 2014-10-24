@@ -1,3 +1,136 @@
+//TODO DONE unsupportedTests this file's package is wrong, shoule be scenarioTests, so we can re-use its prop_t
+//import com.irise.testng.unsupportedTests.CreateActionTest
+//And it may always good to put constants as static final or load from a property files
+//import com.irise.testng.scenarioTests.CreateActionTest
+/**
+ * Created by zwang on 10/10/14.
+ */
+/**
+ * TODO DONE Change all .equals() to .toString().equals()
+ * TODO DONE INFO Widget CONDITIONAL_HTML cannot be created without children
+ * TODO DONE QUESTION println ''.getClass() class java.lang.String
+ * TODO DONE INFO how cHTML is created
+ // Create conditional HTML, add buttons to it
+ json {
+    type "CONDITIONAL_HTML"
+    children([
+        { sourceWidgetId childrenWidgetsSet[0]["id"] },
+        { id childrenWidgetsSet[0]["id"] }
+    ])
+ }
+ println prettyPrint(json.toString())
+ {
+    "type": "CONDITIONAL_HTML",
+    "children": [
+        {   "sourceWidgetId": "10622ed5f6e84d408fc78324403266b6"},
+        {   "id": "10622ed5f6e84d408fc78324403266b6"    }
+    ]
+ }
+ resp = widget.createShowCreateId(projectIdInTest, json.toString())
+ def conditionalHTMLWidgetId = resp.responseData.createId
+ NOTE: the two children look must be of the same type. QUESTION ? !
+ * TODO DONE if CONDITIONAL_HTML remove containerKey QUESTION ? !
+ * static def getWidgetMap (containerKey,widgetNodeInResp,requiredRootAttributes, requiredProps, newRootValues,newPropValues) {
+ * ﻿TODO DONE TASK CURRENT Verify that CHTML or its view can be locked, valid case.
+ * TODO DONE TASK Verify, in the lock aspect, given a stack of transactions, 'undo' will always revoke the top one and pop the stack.  Redo has its stack of 'undos', as per discussion.
+ ﻿* TODO DONE TASK Verify copying of chapter also copies the Lock property of widgets, valid case.
+ * TODO DONE Find nodes by name keyword in content resp. findNodesByNameKeywordToMap (node, keyword)
+ * TODO DONE TASK Verify that the locked widget can be associated to the actions, valid case.
+ *       for (def chap : resp.data.chapters) {
+ //TODO DONE Test isTreeBranchValid (propVector, node)
+ for (def chap : resp.data.chapters)
+     println "isTreeBranchValid (['content','id'], node) = "+isTreeBranchValid (["content","id"], chap)
+     println "isTreeBranchValid (['ctent','id'], node) = "+isTreeBranchValid (['ctent','id'], chap)
+     println "isTreeBranchValid (['content','iid'], node) = "+isTreeBranchValid (['content','iid'], chap)
+     println "isTreeBranchValid ([''], node) = "+isTreeBranchValid ([''], chap)
+ OUTPUT
+ isTreeBranchValid (['content','id'], node) = true
+ isTreeBranchValid (['ctent','id'], node) = false
+ isTreeBranchValid (['content','iid'], node) = false
+ isTreeBranchValid ([''], node) = false
+ //TODO DONE Test static def prettyRespData (resp)
+ * TODO DONE TASK Verify creating actions from locked widget, valid case. Actions TBD?
+ * TODO DONE INFO resp instanceof roovyx.net.http.HttpResponseDecorator
+ //TODO DONE QUESTION What indicates a widget is blacklisted? The answer if a chapter not supported, its widgets if any is 'blacklisted'.
+ //TODO DONE QUESTION Why Some can be locked some not? As above. So the UI layer is supposed to fence off the illegal request.
+ * TODO DONE TASK Verify that you cannot lock blacklist items ( menu, tables....), invalid case.
+ * TODO DONE USE the required properties to create chapter, page, master etc.
+ * TODO DONE TASK Verify that you can lock localRef, valid case. localRef TBD
+ *
+ *
+ *
+ * TODO TASK Verify that the locked widget can be associated to the actions, valid case.  Reopen to use trigger API.
+ * TODO TASK Clean up this file as per stand-up discussion.
+ *
+ // TODO QUESTION CAN NOT DROP  master1(master) to page1, don't have to commit this part.
+ //        // Failed
+ //        sourceChapterId = chapterIds.get('master1')
+ //        targetContentId = contentIds.get('page1')
+ //        resp = g('chapter').dropMasterOnPage(projectIdInTest, chapterIds.get('page1'),new JsonBuilder([sourceId:sourceChapterId,targetId:targetContentId,x:200,y:200]).toString())
+ //        assertEquals(resp.status, 201, "Failed to drop Master on Page " + resp.responseData["failures"])
+ // TODO QUESTION NOTE local_ref at this phase 20141023 is not whitelisted
+ ﻿* TODO QUESTION At the service layer, do (x,y) change as per the new container?
+ * TODO QUESTION Unlock CHTML did not unlock children
+ * Gist:
+ * 1. Locked will be a required property
+ * 2. For container's children, lock property is examined in UI aspect.
+ * TODO BUG TASK Verify that the locked widgets can be moved, valid case. To change (x,y) or to move to a different container.
+ *
+ // TODO DONE his snipet works, the chtml would contain two same type element as c (batch1[0])
+ def c=[]
+ int i =0
+ for (def v : batch1) {
+ c += [sourceWidgetId:v.getKey()]
+ c += [id:v.getKey()]
+ //            json {
+ //                type "CONDITIONAL_HTML"
+ //                name "some name"
+ //                children([
+ //                        { sourceWidgetId v.getKey() },
+ //                        { id v.getKey() }
+ //                ])
+ //            }
+ if (++i ==1)
+ break;
+
+ }
+ def m = [:]
+ m['type'] = "CONDITIONAL_HTML"
+ m['name'] = "C1"
+ m['children'] = c
+ m['properties'] = ["locked": "false", "z": "7", "rules": "None", "y": "10", "x": "10"]
+ json = new JsonBuilder(m)
+ println prettyPrint(json.toString())
+ //                {
+ //                    "type": "CONDITIONAL_HTML",
+ //                    "name": "C1",
+ //                    "children": [
+ //                        {
+ //                            "sourceWidgetId": "85855789400643c6ba77765984d0e2b3"
+ //                        },
+ //                        {
+ //                            "id": "85855789400643c6ba77765984d0e2b3"
+ //                        }
+ //                ],
+ //                    "properties": {
+ //                    "locked": "false",
+ //                    "z": "7",
+ //                    "rules": "None",
+ //                    "y": "10",
+ //                    "x": "10"
+ //                }
+ //                }
+ //POST rest.post("projects/${projectId}/widgets", jsonString)
+ resp = g('widget').createShowCreateId(projectIdInTest, json.toString())
+ def conditionalHTMLWidgetId = resp.responseData.createId
+ // snipet END
+ */
+
+====
+listen http method
+(tcp.dstport==8080 || tcp.srcport==8080) && http && http.request.method==POST
+
+=======
 // Has 12 against 100 failure
 
     /**
