@@ -1,3 +1,86 @@
+/**
+ * Created by zwang on 10/24/14.
+ *
+ * Notes:
+ *
+ * - Disambiguation of 'chapters reorder'.
+ *  Legacy studio behavior, given a single chapter project. Folder structure [F1  [F2  C1]]. | is move destination.
+ *  [F1 [F2 | C1]] leads to [F1 [F2 C1]] NO CHANGE
+ *  [F1 | [F2 C1]] leads to [F1 C1 [F2]]
+ *  |[F1 [F2 C1]] leads to C1 [F1 [F2]]
+ *  [F1 [F2 C1|]|]| leads to [F1 [F2 C1]] NO CHANGE
+ *  So in this test file, we only verify chapter order against chapter, not order against folder, unless DC provides 'chapter folder' API.
+ *  Another example, when try to move C1 after C2, in structure C1 [F1 [F2 C2]] [F3 [F4]].
+ *  So for any destination, after moving.
+ *  - if there is a 'next' chapter, we take the same folder as the next.
+ *  - if there is no 'next', any folder will suffice, given the moved chapter is the last chapter.
+ *  In tests, we simply use the goal chapter's folder for convenience.
+ *
+ * - Middle: we consider it is the element at size() div 2 + 1. Eg. five chapters, the middle is No.3. Four, we get No.3.
+ *   Two, we get No.2. One, we get No.1.
+ *
+ */
+/**
+ * TODO DONE Map getAllChapters
+ * TODO DONE deleteAllChapters
+ * TODO DONE print chapters [name,id] other than [id] only to assure the initial order is as per order created. Need peep UI.
+ * TODO DONE QUESTION, will valueSet() keep the order, Map<K,V> does not have valueSet(), has values() returns instanceof List<V>.
+ * TODO DONE TASK Move 1st chapter to the last position
+ * TODO DONE Change all Queues to LinkedList
+ * TODO DONE TASK Move the last chapter to the top position.
+ * TODO DONE Move middle chapter to be last
+ * TODO DONE Move middle chapter to be first. Valid case.
+ * TODO DONE QUESTION Disambiguation of 'chapters reorder'.
+ * Legacy studio behavior, given a single chapter project. Folder structure [F1  [F2  C1]]. | is move destination.
+ * [F1 [F2 | C1]] leads to [F1 [F2 C1]] NO CHANGE
+ * [F1 | [F2 C1]] leads to [F1 C1 [F2]]
+ * |[F1 [F2 C1]] leads to C1 [F1 [F2]]
+ * [F1 [F2 C1|]|]| leads to [F1 [F2 C1]] NO CHANGE
+ * So in this test file, we only verify chapter order against chapter, not order against folder, unless DC provides 'chapter folder' API.
+ * Another example, when try to move C1 after C2, in structure C1 [F1 [F2 C2]] [F3 [F4]].
+ * So for any destination, after moving.
+ * - if there is a 'next' chapter, we take the same folder as the next.
+ * - if there is no 'next', any folder will suffice, given the moved chapter is the last chapter.
+ * TODO DONE Refactor existing tests according to new move constraint, discussed as the above paragraph.
+ * TODO DONE Coding style according to code review meeting:
+ * 1. Create separate utility class.
+ * 2. Follow given/when/then concept.
+ * 3. Use “static” keyword wisely.
+ * 4. Make sure one test does only ONE thing.
+ * 5. Avoid extension of classes.
+ * 6. Extra line between two functions.
+ * TODO DONE Move the first chapter down bellow a chapter that is in a folder. Valid case.
+ * TODO DONE Move last chapter that is in folder to the very top. Valid case.
+ * TODO DONE Move middle chapter that is in folder to the very top. Valid case.
+ * TODO DONE Re-order pages that are in folders. Example: Page1, Page2, Page3 are in folders. Move Page3 after Page1. Valid case.
+ * TODO DONE Move a page between pages in a folder. Valid case.
+ * TODO DONE Re-oder chapters in a project that contains multilevel empty folders. Valid case.
+ * TODO DONE Do re-order with undo/redo combination. Valid case.
+ * TODO DONE Validation error should be thrown for invalid chapterId and invalid folderId. Invalid case.
+ * TODO DONE Try to change chapter name. Expected: validation error. Invalid case.
+ * TODO DONE Use complex idoc with lot of chapters/folders.
+ *
+ *
+ *
+ * TODO proof read comments, clean up.
+ *
+ *
+ *
+ * TODO CONSIDERING Stress test MAX number of regular pages in a project in localhost.
+ * TODO CONSIDERING Create a folder using REST API other than legacy studio? Possible?
+ * TODO CONSIDERING Make log4j run properly in IntelliJ console test.
+ * TODO QUESTION, Java pass 1.func(Type var )const, 2.func (Type const&  var), 3.func( Type & const var ), 4.func(const Type var ) equivalences?
+ * TODO QUESTION, It looks like testNG did not join the test thread, or handle the 1 and 2 file descriptors properly (flush all the buffers, before exit). Is this the reason we miss some console output (System.out.print) in Intellij, or the finger should point to Intellij?
+ */
+ 
+ 20141031
+
+================================
+# touch hyphen
+touch '-'
+
+================================
+
 //TODO DONE unsupportedTests this file's package is wrong, shoule be scenarioTests, so we can re-use its prop_t
 //import com.irise.testng.unsupportedTests.CreateActionTest
 //And it may always good to put constants as static final or load from a property files
@@ -454,14 +537,35 @@ ALT ENTER
 ^[ \t]*println
 
 ====HISTORY 20141010 ===
+# the mvn bug just remove the ~/.m2
+  314  vim ~/.m2/settings.xml 
+  315  /Users/zwang/.m2/repository
+20141029 Update
+ 507  mkdir dcmlui
+  508  cd dcmlui
+  514  git clone git@github.com:/mlui/suite.git
+  515  cd suite
+  517  git remote show origin
+  523   git remote add mlui git@github.com:/mlui/suite.git
+  524  git fetch mlui
+  525  git checkout --track -b studio54_lite mlui/studio54_lite
+  526  git pull
+  527  git log
+ 533  git clone git@github.com:/mlui/dc.git
+  534  cd dc
+  535  git remote show origin
+  536   git remote add mlui git@github.com:/mlui/dc.git
+  537  git fetch mlui
+  538   git checkout --track -b studio54_lite mlui/studio54_lite
+mvn clean install -DskipTests -Dcobertura.skip
+   542  git clone git@github.com:/iRise/dev-tools
+  
+  /Users/zwang/dcmlui/dev-tools/scripts/debug-dc.sh --war /Users/zwang/dcmlui/dc/muse-dc-web/target/muse-dc-web-9.0.5-SNAPSHOT.war --license-file /Users/zwang/dcmlui/dev-tools/scripts/irise.license --debug-port 5005 -Dcom.sun.management.jmxremote 1>>/Users/zwang/dcmlui/dclog.txt 2>> /Users/zwang/dcmlui/dclog.txt &
+  499  tail -f /Users/zwang/dcmlui/dclog.txt
+
    70  cd ../dev-tools/scripts/
    76  git remote set-url origin git@github.com:irise/irise-service-test.git
-
-# touch hyphen
-touch '-'
-
   183  git add  src/test/groovy/com/irise/testng/featureTests/TestWidgetsGrouping.groovy
-
   201  cd ../dc
   202  git pull
   203  git remote show origin
@@ -480,12 +584,8 @@ touch '-'
   228  fg
   229  fg
   313  ls /Users/zwang/.m2/repository
-
-
-# the mvn bug just remove the ~/.m2
-  314  vim ~/.m2/settings.xml 
-  315  /Users/zwang/.m2/repository
-
+  
+   git clone git@github.com:/mlui/suite.git
   324  git checkout --track -b studio54_lite mlui/studio54_lite
   325  git fetch mlui
   326   git remote add mlui git@github.com:/mlui/suite.git
