@@ -1,3 +1,11 @@
+build mozilla FF 
+./mach build 
+
+=========  
+JMC parameters
+
+-XX:+UnlockCommercialFeatures -XX:+FlightRecorder
+=============================================
 /**
  * Created by zwang on 10/24/14.
  *
