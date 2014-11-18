@@ -1,4 +1,39 @@
-WireSHARK TCP , find packet Find by String , Packet bytes, 
+    /**
+     * @param resp
+     * @return chaptersHolder [
+     uniqueName:[uniqueName,chapterId,contentId]
+     duplicateName:[
+     [chapterId1:[duplicateName,chapterId1,contentId1]
+     [chapterId2:[duplicateName,chapterId2,contentId2]
+     ]
+     ]
+     */
+    static def getChaptersHolderFromResp (resp) {
+        Map chaptersHolder =[:]
+        for (def c: resp.data.chapters) {
+            if (chaptersHolder.containsKey(c['name'])) {
+                def value = chaptersHolder.get(c['name']) // value is map<id,[name,chpId,contId]>
+                if (value instanceof List) {
+                    def vMap = [:]
+                    // put back value
+                    vMap.put(value[1],[value[0],value[1],value[2]])
+                    // add c
+                    vMap.put(c['id'],[c['name'],c['id'],c["content"]["id"]])
+                    // put vMap
+                    chaptersHolder.put(value[0],vMap)
+                } else { // value is a map
+                    value.put(c['id'],[c['name'],c['id'],c["content"]["id"]])
+                }
+            } else {
+                chaptersHolder.put(c['name'],[c['name'],c['id'],c["content"]["id"]])
+            }
+        }
+        chaptersHolder
+    }
+=================
+
+`WireSHARK TCP , find packet Find by String , Packet bytes,
+filter json, right click json, copy, bytes, printable 
 ================
 build mozilla FF 
 ./mach build 
@@ -14,7 +49,7 @@ JMC parameters
  * Notes:
  *
  * - Disambiguation of 'chapters reorder'.
- *  Legacy studio behavior, given a single chapter project. Folder structure [F1  [F2  C1]]. | is move destination.
+ *  Legacy studio behavior, given a single chapter project. Folder structure [F1  [F2  C1a]]. | is move destination.
  *  [F1 [F2 | C1]] leads to [F1 [F2 C1]] NO CHANGE
  *  [F1 | [F2 C1]] leads to [F1 C1 [F2]]
  *  |[F1 [F2 C1]] leads to C1 [F1 [F2]]
