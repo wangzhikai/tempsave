@@ -1,3 +1,60 @@
+    //@Test(groups = ["feature"]) // 
+    protected def void strictTypeCast () {
+        def someArray = [1,3,2,4]
+        //def delay = (int) (Math.random() * (  + 1))
+        for (int i = 0; i < 100; i++) {
+            int c =  (int) (Math.random() * someArray.size())
+          log.info  c
+        }
+        for (int i = 0; i < 100; i++) {
+
+            int c =  (int) Math.random() * someArray.size()
+            log.info  c
+        }
+        // Both ways achieve the same effect, but the first one is safer.
+     }
+=============================================== 
+
+    /**
+     * @param list1 : LHS of X
+     * @param list2 : RHS of X
+     * @return  cartesian product of two collections
+     */
+    public static def getListListCartesian (List list1, List list2) {
+        List result = new LinkedList()
+        int lastRowSize = -1
+        for (def e1: list1) {
+            for (def e2: list2 ){
+                def currentRow = new LinkedList()
+                // e1 instance of List else
+                if (e1 instanceof List) {
+                    for (def e:e1 ) {
+                        currentRow.add(e)
+                    }
+                } else {
+                    currentRow.add(e1)
+                }
+
+                // e2 instance of List else
+                if (e2 instanceof List) {
+                    for (def e:e2 ) {
+                        currentRow.add(e)
+                    }
+                } else {
+                    currentRow.add(e2)
+                }
+
+                if (lastRowSize != -1) {
+                    assertEquals(lastRowSize,currentRow.size(),"Matrices dimensions not match.")
+                }
+                lastRowSize = currentRow.size()
+                result.add(currentRow)
+            }
+        }
+        result
+    }
+
+===================================
     /**
      * @param resp
      * @return chaptersHolder [
@@ -260,6 +317,45 @@ listen http method
 
 =======
 // Has 12 against 100 failure
+
+    /**
+     * @param list1 : LHS of X
+     * @param list2 : RHS of X
+     * @return  cartesian product of two collections
+     */
+    public static def getListListCartesian (List list1, List list2) {
+        List result = new LinkedList()
+        int lastRowSize = -1
+        for (def e1: list1) {
+            for (def e2: list2 ){
+                def currentRow = new LinkedList()
+                // e1 instance of List else
+                if (e1 instanceof List) {
+                    for (def e:e1 ) {
+                        currentRow.add(e)
+                    }
+                } else {
+                    currentRow.add(e1)
+                }
+
+                // e2 instance of List else
+                if (e2 instanceof List) {
+                    for (def e:e2 ) {
+                        currentRow.add(e)
+                    }
+                } else {
+                    currentRow.add(e2)
+                }
+
+                if (lastRowSize != -1) {
+                    assertEquals(lastRowSize,currentRow.size(),"Matrices dimensions not match.")
+                }
+                lastRowSize = currentRow.size()
+                result.add(currentRow)
+            }
+        }
+        result
+    }
 
     /**
      * TASK Verify that lock property can be undo/redo, valid case.
