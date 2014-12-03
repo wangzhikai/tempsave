@@ -1,3 +1,108 @@
+TODO DONE TASK 1. Create a switchview with target 'chtmlId:Next' from button 2. Cut button 3. Paste button in same chapter. Valid case.
+
+/**
+ * Created by zwang on 11/3/14.
+ * TODO DONE TASK Create a switch view action with target = <chtmlId>:Next. Read switch view. Valid case.
+ * TODO DONE TASK Create a switch view action with target = <chtmlId>:Previous. Read switch view. Valid case.
+ * TODO DONE TASK Create a switch view action with target = <chtmlId>:Initial. Read switch view. Valid case.
+ * TODO DONE TASK Create a switch view action with target = <chtmlId>:Hide. Read switch view. Valid case.
+ * TODO DONE TASK Create a switch view action with target = <chtmlId>:Default. Read switch view. Valid case.
+ * TODO DONE TASK Create a switch view action with target = viewId. Read switch view. Valid case.
+ * TODO DONE TASK Create a switch view with multiple chtml targets having multiple meta view values: targets=[<chtml1>:Next, <chtml2>:Previous, <chtml3>:Initial, <chtml4>:Default,<chtml5>:Hide]. Valid case.
+ * TODO DONE TASK Create switchView with invalid targetId, for example: 1. button on page 2. <viewId>:Next. Invalid case.
+ * TODO DONE TASK Create a switch view with sourceId = pageContentId, masterId, cloudContentId, TemplateContentId. Control case.
+ * TODO DONE TASK Create switchviews with entire permutation(QA: should be combinations of effects' properties) of properties. Valid case.
+ * TODO DONE TASK Create switchView with invalid properties: delay, duration, direction, transition type. Invalid case.
+ * TODO DONE TASK Read from iDoc (include chaining switchView1 -> switchView2 -> switchView3). Valid case.
+ * TODO DONE TASK Read from iDoc with Empty View as target. Control case.
+ * TODO DONE TASK Update targetIds with valid targets 1. Meta View (Next, Previous, etc) 2. ViewId 3. Empty targets. Valid case.
+ * TODO DONE TASK Update targetIds with invalid targets 1. button on page 2.chtml. Invalid case.
+ * TODO DONE TASK Update properties: delay, duration, direction, transition type. Valid case.
+ * TODO DONE TASK Update invalid properties. Invalid case.
+ * TODO DONE TASK Delete a trigger with 1 action sequence containing 3 switchViews. Valid case.
+ * TODO DONE TASK Delete each switchView iteratively from a sequence. Valid case.
+ * TODO DONE TASK Read a chapter with meta views and verify isSupported = true. Valid case.
+     * TODO DONE TASK Read a chapter where button has rule set to 'based on data' and verify isSupported=false. Invalid case.
+     * TODO DONE At the same time, testing creating two projects by loading iDocs, and handling them properly during test and after test. In fact, we can use vectors to handle as many as it permits.
+     * TODO Check delay/durations were invariant.
+ 
+ *
+ *
+
+ * TODO QUESTION remove from test, create longrun task?
+ *
+ * TODO CHECK ALL CLONE()s // BAD: toUpdateTriggerMap = preUpdateTriggerMap.clone() // you can not use clone, it did not do full deep copy. ['sequences'][0]['actions'][0]['properties'] is reference copy.
+ * TODO CHECK All assignment = without deep copy.
+
+ * TODO DONE Update check new values bounced back ( from resp)
+ * TODO DONE Remove private def synchronized getATool(String keyWord)
+ * TODO DONE ?:      Ternary (shorthand for if-then-else statement) -- http://groovy.codehaus.org/Operators
+ Safe Navigation Operator (?.)
+ The Safe Navigation operator is used to avoid a NullPointerException. Typically when you have a reference to an object you might need to verify that it is not null before accessing methods or properties of the object. To avoid this, the safe navigation operator will simply return null instead of throwing an exception, like so:
+ def user = User.find( "admin" )           //this might be null if 'admin' does not exist
+ def streetName = user?.address?.street    //streetName will be null if user or user.address is null - no NPE thrown
+
+ Regular Expression Operators
+ find (=~)
+ match (==~)
+ * TODO DONE Refactor to testOneMetaViewWithRandomFactors
+ * TODO DONE DEBUG CHTML children background color not shown
+ * TODO DONE Color CHTML, test with simulation,"backgroundColor": "#0000ff" etc
+ * TODO DONE Question, chtml is created if only add children: looks so.
+ * TODO DONE QUESTION, widget create name is required field, inconsistency?
+ *     //﻿{"type":"SECTION","containerKey":"9e4ec47c3f1d472da8874a73d4b8b556","properties":{"defaultBranchView":"true"},"sourceWidgetId":"723cc277795e498f9baf834ccc88a7f1","sourceProjectId":"906d175249e649bebe105de65e586236"}*     Developer: Here the ‘name’ field is NOT required because we are providing ‘sourceWidgetId’. The ‘name' field is mandatory only if ’sourceWidgetId’ is not present in request body.
+ * TODO DONE CHECK all vaild matrices and invalid matrices call hierarchy: constructNotValidSwitchViewsMatrix,constructValidSwitchViewsMatrix
+ * TODO DONE cartesian product. java.util.Collection.metaClass.cartesianProduct, no such a thing in Java, write one myself.
+ * TODO DONE Fxied 20141119 DELAY >=61 issue
+ * createSwitchViewWithInvalidProperties()
+ verify with legacy studio
+ 15:55:24 INFO  Utilities - 201	 Illegal prop [Previous, TRANS_TYPE_NONE, null, null, 61]
+ discuss with developer:
+ [Default, TRANS_TYPE_NONE, null, null, 61] is OK? Fxied 20141119
+
+
+ * TODO CONSIDERING Position ADT should be as per page
+ * TODO REFACTOR TASK Verify user can read all supported views with effects/delays
+ * TODO DONE REFACTOR DELETED merged to createSwitchViewsWithEntirePermutationOfProperties. TASK Verify user can create all supported views with effects/delays
+ * TODO REFACTOR TASK Verify user can delete views in Action type: switch view
+ * TODO REFACTOR TASK Verify user can update all views in Action type: switch view
+ * TODO QUESTION, sequence:actions 1:+; actions:effect 1:1; action:effects 1:+?; action:target 1:*.
+ * REFACTOR: createSwitchViewWithViewTargets createSwitchViewWithViewTargets
+
+
+
+ *
+ * TODO Refactor as per code review session 20141107
+ *      TODO All resp assert plus resp.responseData["failures"]
+ *      TODO Remove any functions not called in this class
+ *      TODO
+ * gist
+ * - Extension evasion
+ * - Functional program
+ * - Cut test body short
+ * - Utility class
+ * - Apply to grouping, chapter reorder, locking, switch views.
+ * TODO Create/merge to a Utility class
+ *
+ *
+ * TODO Proof read + GIVEN, WHEN, THEN
+ *
+ *
+ * TODO DONE Question: the direction will be same as legacy studio, or as per rest test observation. Where are they defined?
+ * TODO DONE MetaViewsOfSwitchViews [Previous,Next,Default,Initial,Hide][Invalid]
+ * TODO DONE Refer TestAction for
+ * TODO OUT OF QUESTION API differs from automation Trigger class
+ * TODO DONE API reference delete after tasks
+ * TODO OUT Considering automate Go to editor, align buttons, (save idoc as SwitchViews02.idoc)
+ * TODO OUT Question should delay >= duration?
+ * TODO OUT Interesting, CHTML view can be at a different position than the section as the source.
+ *
+ *
+ * TODO CONSIDERING Compare fully recursively two nodes.
+ * There should be a deepCompare with the floating point numbers nightmare, string locales, encoding, line feed, carriage, escape sequence, what else?
+ */
+
+==============================================
     //@Test(groups = ["feature"]) // 
     protected def void strictTypeCast () {
         def someArray = [1,3,2,4]
