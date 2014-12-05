@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class MapKeyCaseSensitivity {
+	// It should be case sensitive, remember it is the comparator decides.
 
 	public static void main(String[] args) {
 		char a = 'a';
@@ -22,6 +23,10 @@ public class MapKeyCaseSensitivity {
         for (int i=0, x=1, y=1;i<100; i++) {
             
         }
+    	Map<String, String> linkedHashMapStrStr = new LinkedHashMap<String, String> ();
+    	linkedHashMapStrStr.put("AAA","AAA");
+    	linkedHashMapStrStr.put("Aaa","Aaa");
+    	System.out.println(linkedHashMapStrStr.toString());
 
 
 	}

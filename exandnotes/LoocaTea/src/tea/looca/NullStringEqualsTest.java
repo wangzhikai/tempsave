@@ -1,12 +1,12 @@
 package tea.looca;
 
-public class NullStringEquasTest {
+public class NullStringEqualsTest {
 
 	public static void main(String[] args) {
 		String s1 = null;
 		String s2 = null;
 		System.out.println(s1==s2);
-		//System.out.println(s1.equals( s2));
+		//System.out.println(s1.equals( s2));// exception
 		
 		String s3 = "Good developer TESTs it first.";
 		String s4 = new String(s3);
