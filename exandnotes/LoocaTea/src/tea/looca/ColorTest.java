@@ -12,7 +12,7 @@ public class ColorTest {
 		}
 		return tmp;
 	}
-	public static String getAnIriseRandom256RGBString () {
+	public static String getARandom256RGBStringBeginWithAmpersand () {
 		return "#"+getARandom256RGBString ();
 	}
 	public static void main(String[] args) {
@@ -21,7 +21,7 @@ public class ColorTest {
 		System.out.println(i.toHexString(i).toUpperCase());
 		System.out.println(Integer.MAX_VALUE);
 		for (int c = 0; c<=Integer.MAX_VALUE/10000; c++) {
-			String str = getAnIriseRandom256RGBString ();
+			String str = getARandom256RGBStringBeginWithAmpersand ();
 			str = str.replaceAll("#", "");
 			if (c%10000 == 0) {
 				System.out.println(str + "\t"+c);

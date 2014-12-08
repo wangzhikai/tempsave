@@ -1,3 +1,36 @@
+Gradle/Groovy Automated Test
+* Functional Test Rest Endpoints
+- no performance
+- no concurrent testing
+* Creating/monitoring Threads
+* Given, When, Then paradigm
+* Test cases
+* About CRUD (chapter, content, widget types etc)
+* Do not use iDoc, S54 supported
+* Leverage exist API or fix it
+
+
+====================
+HttpResponseDecorator resp
+
+=======================
+Groovy returns 'true'
+        def map1 = ['g':'k']
+        def map2 = ['w':'d']
+
+        if ( map1.get('c') == map2.get('d')) {
+            log.info "true"
+        } else {
+            log.info "false"
+        }
+
+=====================
+In programming languages, a closure (also lexical closure or function closure) is a function or reference to a function together with a referencing environment—a table storing a reference to each of the non-local variables (also called free variables or upvalues) of that function.[
+
+http://en.wikipedia.org/wiki/Closure_%28computer_programming%29
+
+=======================
+
 TODO DONE TASK 1. Create a switchview with target 'chtmlId:Next' from button 2. Cut button 3. Paste button in same chapter. Valid case.
 
 /**
