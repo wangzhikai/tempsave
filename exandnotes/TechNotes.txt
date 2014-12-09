@@ -1,3 +1,74 @@
+http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html
+
+
+Java Garbage Collection Basics
+Java Virtual Machine
+
+The Java Virtual Machine (JVM) is an abstract computing machine. The JVM is a program that looks like a machine to the programs written to execute in it.
+
+The heap is where your object data is stored. This area is then managed by the garbage collector selected at startup. 
+
+Throughput
+
+Throughput focuses on maximizing the amount of work by an application in a specific period of time. Examples of how throughput might be measured include:
+
+- The number of transactions completed in a given time.
+- The number of jobs that a batch program can complete in an hour.
+- The number of database queries that can be completed in an hour.
+
+GC
+1. Marking 2. Deletion with Compacting 
+
+The information learned from the object allocation behavior can be used to enhance the performance of the JVM. Therefore, the heap is broken up into smaller parts or generations. The heap parts are: Young Generation, Old or Tenured Generation, and Permanent Generation
+
+Stop the World Event - All minor garbage collections are "Stop the World" events. This means that all application threads are stopped until the operation completes. Minor garbage collections are always Stop the World events.
+
+NB is wrong. Only young generation is FILLED UP. Stop WORLD happens. 
+It could not be login server with 20G even 48G. Only the app servers do the linguistic stuff qualify.
+So does his acomplis CM.
+1. First, any new objects are allocated to the eden space. Both survivor spaces start out empty.
+2. When the eden space fills up, a minor garbage collection is triggered.
+3. Referenced objects are moved to the first survivor space. Unreferenced objects are deleted when the eden space is cleared.
+4. At the next minor GC, the same thing happens for the eden space. Unreferenced objects are deleted and referenced objects are moved to a survivor space. However, in this case, they are moved to the second survivor space (S1). In addition, objects from the last minor GC on the first survivor space (S0) have their age incremented and get moved to S1. Once all surviving objects have been moved to S1, both S0 and eden are cleared. Notice we now have differently aged object in the survivor space.
+5. At the next minor GC, the same process repeats. However this time the survivor spaces switch. Referenced objects are moved to S0. Surviving objects are aged. Eden and S1 are cleared.
+6. This slide demonstrates promotion. After a minor GC, when aged objects reach a certain age threshold (8 in this example) they are promoted from young generation to old generation.
+7.As minor GCs continue to occure objects will continue to be promoted to the old generation space.
+
+8. So that pretty much covers the entire process with the young generation. Eventually, a major GC will be performed on the old generation which cleans up and compacts that space.
+
+ java -Xmx12m -Xms3m -Xmn1m -XX:PermSize=20m -XX:MaxPermSize=20m -XX:+UseSerialGC -jar c:\javademos\demo\jfc\Java2D\Java2demo.jar
+ 
+ jvisualvm
+
+Command Line Switches
+
+To enable the Serial Collector use:
+-XX:+UseSerialGC
+
+Usage Cases
+
+The Parallel collector is also called a throughput collector. Since it can use multilple CPUs to speed up application throughput. This collector should be used when a lot of work need to be done and long pauses are acceptable. For example, batch processing like printing reports or bills or performing a large number of database queries.
+-XX:+UseParallelGC
+
+-XX:+UseParallelOldGC
+The Concurrent Mark Sweep (CMS) Collector
+
+The Concurrent Mark Sweep (CMS) collector (also referred to as the concurrent low pause collector) collects the tenured generation. It attempts to minimize the pauses due to garbage collection by doing most of the garbage collection work concurrently with the application threads. Normally the concurrent low pause collector does not copy or compact the live objects. A garbage collection is done without moving the live objects. If fragmentation becomes a problem, allocate a larger heap.
+To enable the CMS Collector use:
+-XX:+UseConcMarkSweepGC
+and to set the number of threads use:
+-XX:ParallelCMSThreads=<n>
+
+The G1 Garbage Collector
+
+The Garbage First or G1 garbage collector is available in Java 7 and is designed to be the long term replacement for the CMS collector. The G1 collector is a parallel, concurrent, and incrementally compacting low-pause garbage collector that has quite a different layout from the other garbage collectors described previously. However, detailed discussion is beyond the scope of this OBE.
+Command Line Switches
+
+To enable the G1 Collector use:
+-XX:+UseG1GC
+
+
+========================
 Gradle/Groovy Automated Test
 * Functional Test Rest Endpoints
 - no performance
