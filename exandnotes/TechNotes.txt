@@ -1,3 +1,66 @@
+==== Sed Command in Unix and Linux Examples 
+http://www.folkstalk.com/2012/01/sed-command-in-unix-examples.html
+1. Replacing or substituting string
+sed 's/unix/linux/' file.txt
+2. Replacing the nth occurrence of a pattern in a line.
+sed 's/unix/linux/2' file.txt
+3. Replacing all the occurrence of the pattern in a line.
+sed 's/unix/linux/g' file.txt
+4. Replacing from nth occurrence to all occurrences in a line.
+sed 's/unix/linux/3g' file.txt
+5. Changing the slash (/) delimiter
+:~ zwang$ sed 's_unix_latinx_' file.txt
+latinx is great os. unix is opensource. unix is free os.
+learn operating system.
+latinxlinux which one you choose.
+:~ zwang$ cat file.txt 
+unix is great os. unix is opensource. unix is free os.
+learn operating system.
+unixlinux which one you choose.
+6. Using & as the matched string
+sed 's/unix/{&}/' file.txt
+7. Using \1,\2 and so on to \9
+The parenthesis needs to be escaped with the backslash character. Another example is if you want to switch the words "unixlinux" as "linuxunix", the sed command is
+
+>sed 's/\(unix\)\(linux\)/\2\1/' file.txt
+unix is great os. unix is opensource. unix is free os.
+learn operating system.
+linuxunix which one you choose.
+8. Duplicating the replaced line with /p flag
+sed 's/unix/linux/p' file.txt
+11. Replacing string on a specific line number.
+sed '3 s/unix/linux/' file.txt
+12. Replacing string on a range of lines.
+>sed '1,3 s/unix/linux/' file.txt
+14. Deleting lines.
+
+You can delete the lines a file by specifying the line number or a range or numbers.
+
+>sed '2 d' file.txt
+>sed '5,$ d' file.txt
+20. Transform like tr command
+
+The sed command can be used to convert the lower case letters to upper case letters by using the transform "y" option.
+
+>sed 'y/ul/UL/' file.txt
+Unix is great os. Unix is opensoUrce. Unix is free os.
+Learn operating system.
+UnixLinUx which one yoU choose.
+
+
+=====
+build.gradle: jvmArgs += [ "-XX:MaxPermSize=256m" ] -- 20141219
+-XX:ParallelCMSThreads=<n>
+The following are far better not.
+  jvmArgs += [ "-XX:PermSize=512m" ]
+   jvmArgs += [ "-XX:MaxPermSize=1024m" ]
+   jvmArgs += [ "-XX:ParallelCMSThreads=2" ]
+Otherwise failure at 82M perm gen is almost deterministic.
+Remaining tests probably skipped.
+   
+=====
+Almost the same as Tibergem said, one hundred lines one bug.
+=====
 http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html
 
 
@@ -23,9 +86,9 @@ The information learned from the object allocation behavior can be used to enhan
 
 Stop the World Event - All minor garbage collections are "Stop the World" events. This means that all application threads are stopped until the operation completes. Minor garbage collections are always Stop the World events.
 
-NB is wrong. Only young generation is FILLED UP. Stop WORLD happens. 
+Only young generation is FILLED UP. Stop WORLD happens. 
 It could not be login server with 20G even 48G. Only the app servers do the linguistic stuff qualify.
-So does his acomplis CM.
+SCM.
 1. First, any new objects are allocated to the eden space. Both survivor spaces start out empty.
 2. When the eden space fills up, a minor garbage collection is triggered.
 3. Referenced objects are moved to the first survivor space. Unreferenced objects are deleted when the eden space is cleared.
@@ -36,6 +99,7 @@ So does his acomplis CM.
 
 8. So that pretty much covers the entire process with the young generation. Eventually, a major GC will be performed on the old generation which cleans up and compacts that space.
 
+Major garbage collection are also Stop the World events. Often a major collection is much slower because it involves all live objects. So for Responsive applications, major garbage collections should be minimized. Also note, that the length of the Stop the World event for a major garbage collection is affected by the kind of garbage collector that is used for the old generation space.
  java -Xmx12m -Xms3m -Xmn1m -XX:PermSize=20m -XX:MaxPermSize=20m -XX:+UseSerialGC -jar c:\javademos\demo\jfc\Java2D\Java2demo.jar
  
  jvisualvm

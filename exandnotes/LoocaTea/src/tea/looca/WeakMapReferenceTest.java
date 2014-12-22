@@ -43,6 +43,12 @@ public class WeakMapReferenceTest {
         map.put(chapterName,"value5")
         log.info map.get(chapterName)
         log.info map.get("page_SOURCE") // BINGO this one hits a null. <"page_SOURCE"> evaluates as {java.lang.String@2588}"page_SOURCE"
+        - log.info map.get("page_SOURCE") // BINGO this one hits a null. <"page_SOURCE"> evaluates as {java.lang.String@2588}"page_SOURCE"
++ log.info map.get("page_SOURCE") + " is before the first space"// BINGO this one hits a null. <"page_SOURCE"> evaluates as {java.lang.String@2588}"page_SOURCE"
++ def cname = "page_SOURCE"
++ log.info map.get(cname) // null
++ String sname = "page_SOURCE"
++ log.info map.get(sname) // null
 */
 
 	}
