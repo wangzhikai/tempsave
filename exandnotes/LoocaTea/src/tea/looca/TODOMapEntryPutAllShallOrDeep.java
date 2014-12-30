@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class MapEntryPutAllShallOrDeep {
+public class TODOMapEntryPutAllShallOrDeep {
 
 	public static void main(String[] args) {
 		Map<String,String> a = new LinkedHashMap<String,String> ();

@@ -1,3 +1,52 @@
+http://en.wikipedia.org/wiki/Time_%28Unix%29
+30.401: [Full GC [PSYoungGen: 8793K->0K(612864K)] [ParOldGen: 156633K->75857K(192512K)] 165426K->75857K(805376K) [PSPermGen: 78160K->78129K(156672K)], 0.2902820 secs] [Times: user=0.83 sys=0.02, real=0.29 secs] 
+1961.587: [Full GC [PSYoungGen: 17890K->0K(92160K)] [ParOldGen: 188759K->162190K(260096K)] 206649K->162190K(352256K) [PSPermGen: 102679K->102669K(194560K)], 0.2935750 secs] [Times: user=1.32 sys=0.00, real=0.30 secs] 
+2382.853: [Full GC [PSYoungGen: 13816K->0K(43520K)] [ParOldGen: 259524K->162279K(267776K)] 273341K->162279K(311296K) [PSPermGen: 102671K->102335K(198144K)], 0.4811270 secs] [Times: user=2.19 sys=0.01, real=0.48 secs] 
+2910.733: [Full GC [PSYoungGen: 1429K->0K(43520K)] [ParOldGen: 269927K->137111K(235008K)] 271357K->137111K(278528K) [PSPermGen: 102340K->102340K(193536K)], 0.1805810 secs] [Times: user=0.70 sys=0.01, real=0.18 secs] 
+3275.035: [Full GC [PSYoungGen: 1419K->0K(44032K)] [ParOldGen: 234607K->137027K(232960K)] 236027K->137027K(276992K) [PSPermGen: 102340K->102340K(187904K)], 0.1554120 secs] [Times: user=0.67 sys=0.00, real=0.16 secs] 
+3646.219: [Full GC [PSYoungGen: 12280K->0K(32256K)] [ParOldGen: 235330K->162508K(261120K)] 247611K->162508K(293376K) [PSPermGen: 102343K->102343K(180736K)], 0.1935560 secs] [Times: user=0.79 sys=0.00, real=0.20 secs] 
+3947.109: [Full GC [PSYoungGen: 5106K->0K(23040K)] [ParOldGen: 252479K->160270K(262144K)] 257586K->160270K(285184K) [PSPermGen: 102345K->102345K(173056K)], 0.1951700 secs] [Times: user=0.74 sys=0.01, real=0.20 secs] 
+4168.440: [Full GC [PSYoungGen: 325K->0K(43520K)] [ParOldGen: 256638K->136686K(242688K)] 256964K->136686K(286208K) [PSPermGen: 102345K->102345K(165376K)], 0.1510450 secs] [Times: user=0.66 sys=0.00, real=0.15 secs] 
+5210.148: [Full GC [PSYoungGen: 28130K->0K(56320K)] [ParOldGen: 229911K->163449K(270848K)] 258041K->163449K(327168K) [PSPermGen: 102350K->102350K(157696K)], 0.1939580 secs] [Times: user=0.84 sys=0.00, real=0.20 secs] 
+6651.809: [Full GC [PSYoungGen: 1029K->0K(76800K)] [ParOldGen: 259316K->136667K(245248K)] 260346K->136667K(322048K) [PSPermGen: 102366K->102366K(151040K)], 0.1540850 secs] [Times: user=0.67 sys=0.01, real=0.16 secs] 
+10020.957: [Full GC [PSYoungGen: 18402K->0K(46080K)] [ParOldGen: 253077K->164010K(266752K)] 271479K->164010K(312832K) [PSPermGen: 102372K->102372K(144384K)], 0.1855920 secs] [Times: user=0.79 sys=0.00, real=0.19 secs] 
+10923.064: [Full GC [PSYoungGen: 12664K->0K(58368K)] [ParOldGen: 256973K->148987K(256000K)] 269638K->148987K(314368K) [PSPermGen: 102373K->102373K(138752K)], 0.1576700 secs] [Times: user=0.72 sys=0.00, real=0.16 secs] 
+11464.381: [Full GC [PSYoungGen: 15736K->0K(61440K)] [ParOldGen: 240749K->152079K(258048K)] 256486K->152079K(319488K) [PSPermGen: 102373K->102373K(133632K)], 0.1873730 secs] [Times: user=0.77 sys=0.00, real=0.18 secs] 
+12065.891: [Full GC [PSYoungGen: 15352K->0K(58368K)] [ParOldGen: 249475K->151699K(254464K)] 264827K->151699K(312832K) [PSPermGen: 102373K->102373K(129024K)], 0.1968280 secs] [Times: user=0.79 sys=0.00, real=0.19 secs] 
+12607.462: [Full GC [PSYoungGen: 19160K->0K(58368K)] [ParOldGen: 243541K->155556K(254976K)] 262702K->155556K(313344K) [PSPermGen: 102373K->102373K(124928K)], 0.1972220 secs] [Times: user=0.81 sys=0.01, real=0.20 secs] 
+13149.025: [Full GC [PSYoungGen: 27256K->0K(72192K)] [ParOldGen: 241780K->163648K(259584K)] 269037K->163648K(331776K) [PSPermGen: 102378K->102378K(121856K)], 0.1926320 secs] [Times: user=0.83 sys=0.00, real=0.19 secs] 
+13750.620: [Full GC [PSYoungGen: 389K->0K(58880K)] [ParOldGen: 254354K->143516K(235008K)] 254743K->143516K(293888K) [PSPermGen: 108096K->108095K(126464K)], 0.1870500 secs] [Times: user=0.75 sys=0.01, real=0.18 secs] 
+15976.331: [Full GC [PSYoungGen: 24981K->0K(104448K)] [ParOldGen: 238022K->182250K(264192K)] 263003K->182250K(368640K) [PSPermGen: 112856K->112824K(129536K)], 0.2452060 secs] [Times: user=0.96 sys=0.00, real=0.24 secs] 
+17059.018: [Full GC [PSYoungGen: 24565K->0K(223744K)] [ParOldGen: 255013K->204111K(292352K)] 279579K->204111K(516096K) [PSPermGen: 113694K->113676K(128512K)], 0.2657380 secs] [Times: user=1.15 sys=0.01, real=0.27 secs] 
+18390.385: [Full GC [PSYoungGen: 9422K->0K(159744K)] [ParOldGen: 283322K->189525K(274944K)] 292745K->189525K(434688K) [PSPermGen: 113836K->113832K(126976K)], 0.2716090 secs] [Times: user=1.15 sys=0.00, real=0.27 secs] 
+User Time vs System Time
+
+The term 'user CPU time' can be a bit misleading at first. To be clear, the total CPU time is the combination of the amount of time the CPU(s) spent performing some action for a program and the amount of time the CPU(s) spent performing system calls for the kernel on the program's behalf. When a program loops through an array, it is accumulating user CPU time. Conversely, when a program executes a system call such as exec or fork, it is accumulating system CPU time.
+Real Time vs CPU Time
+
+The term "real time" in this context refers to elapsed "wall clock" time, like using a stop watch. The total CPU time (user time + sys time) may be more or less than that value. Because a program may spend some time waiting and not executing at all (whether in user mode or system mode) the real time may be greater than the total CPU time. Because a program may fork children whose CPU times (both user and sys) are added to the values reported by the time command, but on a multicore system these tasks are run in parallel, the total CPU time may be greater than the real time.
+Method of operation
+
+According to the source code of the GNU implementation of time, most information shown by time is derived from the wait3 system call. On systems that do not have a wait3 call that returns status information, the times system call is used instead.
+=====
+TODO
+http://www.oracle.com/technetwork/java/javase/gc-tuning-6-140523.html
+====
+tcpdump -tttt -r verifyLockUndoRedo16testsfailedat4.pcap
+tcpdump -qns 0 -X -r verifyLockUndoRedo16testsfailedat4.pcap > dump.txt 
+====
+1. Grep OR Using \|
+grep 'pattern1\|pattern2' filename
+http://www.thegeekstuff.com/2011/10/grep-or-and-not-operators/
+=====
+some painkiller for deep cough
+        -Xmx2048m \
+        -XX:MaxPermSize=256m \
+        -XX:ParallelCMSThreads=4 \
+
+=====
+git status | grep "^[[:space:]]*modified" | sed 's/modified://' | xargs -I{} git checkout {}
+
 ==== Sed Command in Unix and Linux Examples 
 http://www.folkstalk.com/2012/01/sed-command-in-unix-examples.html
 1. Replacing or substituting string
@@ -51,7 +100,7 @@ UnixLinUx which one yoU choose.
 =====
 build.gradle: jvmArgs += [ "-XX:MaxPermSize=256m" ] -- 20141219
 -XX:ParallelCMSThreads=<n>
-The following are far better not.
+The following are far better than not.
   jvmArgs += [ "-XX:PermSize=512m" ]
    jvmArgs += [ "-XX:MaxPermSize=1024m" ]
    jvmArgs += [ "-XX:ParallelCMSThreads=2" ]

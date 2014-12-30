@@ -3,7 +3,7 @@ package tea.looca;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArrayTest {
+public class ListToArrayTest {
 
 	public static void main(String[] args) {
 

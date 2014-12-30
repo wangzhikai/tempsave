@@ -3,7 +3,7 @@ package tea.looca;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class MapKeyCaseSensitivity {
+public class MapKeyCaseSensitivityYES {
 	// It should be case sensitive, remember it is the comparator decides.
 
 	public static void main(String[] args) {
