@@ -13,9 +13,13 @@ public class JavaIntegerInBinaryFormat {
 				int tmp = i;
 				
 				//System.out.println(PaddingStrings.padAString(Integer.toBinaryString(~tmp), '0', -32));
-				//an wei qu fan zai jia yis
+				//an wei qu fan zai jia yi
 				System.out.println(~tmp + 1);
 				System.out.println(PaddingStrings.padAString(Integer.toBinaryString(~tmp + 1), '0', -32));
+				
+				int tmp2 = (~tmp+1);
+				System.out.println(~tmp2+1);
+				System.out.println(PaddingStrings.padAString(Integer.toBinaryString(~tmp2+1), '0', -32));
 				
 				System.out.println();
 				

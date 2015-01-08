@@ -1,6 +1,6 @@
 package tea.looca;
 
-public class PatchHex {
+public class FindBytesValuesInHex {
 
 	public static void main(String[] args) {
 		String s = "PATCH";
