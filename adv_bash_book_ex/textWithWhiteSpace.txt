@@ -1,0 +1,14 @@
+yyp1 2 3 433 555  ioo
+p1	 2 3 433 555  ioo
+yyp1 2 3  433	 555  ioo
+yyp1 2 3 433 555  ioo
+yyp1 2 3 433 555  ioo
+yyp1  3 433 555  ioo
+yyp1 2 3  555  ioo
+yyp1 2 3 o o
+#The next lines : four spaces, two tabs, one space one tab, return
+    
+		
+ 	
+
+   	
