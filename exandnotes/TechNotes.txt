@@ -1,3 +1,63 @@
+==== Groovy closure
+//        def aquals = { a, b, field, msg ->
+//            // this is wrong, it is comparing two references return null == null -> assertEquals(a.field, b.field, "$msg".toString())
+//            // RHS is not literal
+//            assertTrue(a[field].equals(b[field]), "$msg".toString())
+//            //assertEquals(a.field, b.field, "$msg".toString())
+//        }
+//        for (def field in ['name','type']) {
+//            aquals(localrefInNewPage, localrefInTemplate, field, "LOCAL_REF ${field} changed.")
+//        }
+====
+        def cpp = 'c++'
+        //assertEquals('c++',null&&cpp,"Should ok")// Failed to understand this.
+        cpp = new String ('c++')
+        assertEquals('c++',cpp,"Should ask this question.")
+		
+======
+iRises-MacBook-Pro-6:irise-service-test zwang$ grep assertEquals -R src | grep "assertEqual[^,]*,[[:space:]]*[0-9]\+" | wc -l
+    1848
+iRises-MacBook-Pro-6:irise-service-test zwang$ grep assertEquals -R src | grep -v "assertEqual[^,]*\,[[:space:]]*[0-9]\+"  | wc -l
+     999
+
+
+The similar things have similarity.
+    @Test(dataProvider = "outlineWidgets")
+    public void testSelectItemInOutlinePanel(String dodId) {
+        Workspace workspace = new Workspace(driver);
+        OutlineWidgetsPanel owPanel = new OutlineWidgetsPanel(driver);
+
+        OutlineWidget outlineWidget = new OutlineWidget(driver, dodId);
+        String elemName = outlineWidget.getName();
+
+        logStart("for selecting outline panel for Item " + elemName + "");
+
+        // Select item in outline panel
+        owPanel.selectWidget(dodId);
+
+        // Verify if selection overlay is on in workspace
+        Overlay overlay = workspace.getSelectionOverlay();
+        AssertJUnit.assertNotNull("Selection overlay should show up", overlay);
+
+        String overlayWidgetDodId = workspace.getWidgetById(overlay.getDataWidgetXP()).getDodId();
+
+        AssertJUnit.assertEquals("Selection overlay is on widget", dodId, overlayWidgetDodId);
+        logConfirm("Selection overlay is on widget " + elemName + " when it is selected on outline panel");
+    }
+	 
+iRises-MacBook-Pro-6:suite zwang$ find . | grep \/src | grep "\.java$" | xargs -I{} grep '==' {} | less
+	 
+	       if (group == root.getUserObject()) {
+                if (group == item.getUserObject()) {
+            if (newParent == null) { //Some other user deleted the parent node itself.
+            if (index == -1) { //Some other user deleted the node.
+            if (item.getUserObject() == searchNode) {
+        if (group == root.getUserObject()) {
+                if (group == item.getUserObject()) {
+        if (root.getUserObject() == null) {
+            if (item.getNodeType() == NodeType.DATASHEET) {
+
+====
 Use bash For Loop In One Line
 for((i=0;i<3;i++)); do echo $i; done
 0
