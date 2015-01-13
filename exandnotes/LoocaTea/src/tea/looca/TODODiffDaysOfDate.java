@@ -1,5 +1,6 @@
 package tea.looca;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -45,8 +46,52 @@ public class TODODiffDaysOfDate {
                 "2015-01-09T11:38:54.678-08:00",
                 "2015-W02-5"
 		};
-		//assert ();
-		assert dateInputs.length == formats.length+1;
+		
+		for (int i= 0; i< dateInputs.length; i++) {
+			try {
+				System.out.println(new SimpleDateFormat(formats[i]).parse(dateInputs[i]));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		/*
+java.text.ParseException: Unparseable date: "20150109"
+	at java.text.DateFormat.parse(DateFormat.java:357)
+	at tea.looca.TODODiffDaysOfDate.main(TODODiffDaysOfDate.java:52)
+java.text.ParseException: Unparseable date: "2015.01.09 AD at 11:38:54 PST"
+	at java.text.DateFormat.parse(DateFormat.java:357)
+	at tea.looca.TODODiffDaysOfDate.main(TODODiffDaysOfDate.java:52)
+java.text.ParseException: Unparseable date: "Fri, Jan 9, '15"
+	at java.text.DateFormat.parse(DateFormat.java:357)
+	at tea.looca.TODODiffDaysOfDate.main(TODODiffDaysOfDate.java:52)
+java.text.ParseException: Unparseable date: "11:38 AM"
+	at java.text.DateFormat.parse(DateFormat.java:357)
+	at tea.looca.TODODiffDaysOfDate.main(TODODiffDaysOfDate.java:52)
+java.text.ParseException: Unparseable date: "11 o'clock AM, Pacific Standard Time"
+	at java.text.DateFormat.parse(DateFormat.java:357)
+	at tea.looca.TODODiffDaysOfDate.main(TODODiffDaysOfDate.java:52)
+java.text.ParseException: Unparseable date: "11:38 AM, PST"
+	at java.text.DateFormat.parse(DateFormat.java:357)
+	at tea.looca.TODODiffDaysOfDate.main(TODODiffDaysOfDate.java:52)
+java.text.ParseException: Unparseable date: "02015.January.09 AD 11:38 AM"
+	at java.text.DateFormat.parse(DateFormat.java:357)
+	at tea.looca.TODODiffDaysOfDate.main(TODODiffDaysOfDate.java:52)
+java.text.ParseException: Unparseable date: "Fri, 9 Jan 2015 11:38:54 -0800"
+	at java.text.DateFormat.parse(DateFormat.java:357)
+	at tea.looca.TODODiffDaysOfDate.main(TODODiffDaysOfDate.java:52)
+java.text.ParseException: Unparseable date: "150109113854-0800"
+	at java.text.DateFormat.parse(DateFormat.java:357)
+	at tea.looca.TODODiffDaysOfDate.main(TODODiffDaysOfDate.java:52)
+java.text.ParseException: Unparseable date: "2015-01-09T11:38:54.678-0800"
+	at java.text.DateFormat.parse(DateFormat.java:357)
+	at tea.looca.TODODiffDaysOfDate.main(TODODiffDaysOfDate.java:52)
+java.text.ParseException: Unparseable date: "2015-01-09T11:38:54.678-08:00"
+	at java.text.DateFormat.parse(DateFormat.java:357)
+	at tea.looca.TODODiffDaysOfDate.main(TODODiffDaysOfDate.java:52)
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 11
+	at tea.looca.TODODiffDaysOfDate.main(TODODiffDaysOfDate.java:52)
+		 */
 
 	}
 
