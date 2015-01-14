@@ -1,3 +1,6 @@
+==== print file in hexs
+hexdump -C pom.xml 
+
 ==== Groovy closure
 //        def aquals = { a, b, field, msg ->
 //            // this is wrong, it is comparing two references return null == null -> assertEquals(a.field, b.field, "$msg".toString())
