@@ -44,5 +44,42 @@ public class SortIgnoreCase {
 			System.out.println(e.toString());
 		}
 	}
+	
+	/*Groovy equivalence
+	 * 
+    @Test(groups = ["feature"])
+    def void sortListIgnoreCase () {
+        //def l=l==null?[]:l
+        def l = []
+        l.add("a");
+        l.add("a");
+        l.add("c");
+        l.add("aa");
+        l.add("c");
+        l.add("aba");
+        l.add("abba");
+        l.add("aa");
+        l.add("c");
+        l.add("dba");
+        l.add("dba");
+        l.add("da");
+        l.add("dbbba");
+        l.add("dbaa");
+        l.add("edbae");
+        Collections.shuffle(l);
+        println "l after shuffle:"
+        for (Object e : l) {
+            println e.toString()
+        }
+        Collections.shuffle(l);
+        Collections.sort(l,{a,b-> a.toString().toLowerCase().compareTo(b.toString().toLowerCase())} )
+        println "l after sort:"
+        for (Object e : l) {
+            println e.toString()
+        }
+        println "Period"
+    }
+
+	 */
 
 }
