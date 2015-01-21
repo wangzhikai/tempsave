@@ -1,3 +1,56 @@
+==== dc 9.2.0 Need --migration
+/Users/zwang/dcmlui/dev-tools/scripts/debug-dc.sh --migrate --war /Users/zwang/dcmlui/dc/muse-dc-web/target/muse-dc-web-9.2.0-SNAPSHOT.war
+==== safe to use this block, but compare null and null is still a logic deficiency
+        String test = "test";
+        String test2 = new String (test);
+        //assertNotEquals(test,test2,"\"test\"@ref1 != \"test\"@ref2") //.equals is called.
+        assertTrue(test.equals(test2),"\"test\"@ref1 equals \"test\"@ref2")
+
+===== 
+ public static void main(String[] args) {
+
+        ActionMetadata actionMetadata = null;
+        try {
+
+            actionMetadata = new MetadataConfiguration().actionMetadata();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+
+        String result = "[";
+
+        //System.out.println(actionMetadata.toString());
+        for (ContentType ct : ContentType.values()) {
+            String tmp = "";
+
+            if (null != actionMetadata.getSupportedTriggerTypesForPage()) {
+                if (null != actionMetadata.getSupportedTriggerTypesForPage().get(ct)) {
+                    tmp += "\""+ct.toString()+"\":[";
+                    for (Object tt : actionMetadata.getSupportedTriggerTypesForPage().get(ct)) {
+                        //System.out.println("\"" + tt + "\",");
+                        tmp += "\""+tt+"\",";
+                    }
+                    tmp+="],\n";
+                    tmp = tmp.replaceAll(",],$","],");
+
+                } else {
+                    //System.out.println("\"" + ct.toString() + "\":[],");
+                    tmp += "\""+ct.toString()+"\":[],\n";
+                }
+                result+=tmp;
+
+
+            }
+        }
+        result += "]";
+        System.out.println(result);
+        result = result.replaceAll("(?s)],[^,]*]\\z","]\n]");
+        System.out.println(result);
+
+    }
+	
 ==== print file in hexs
 hexdump -C pom.xml 
 
