@@ -54,7 +54,24 @@ public class DeduplicateIgnoreCase {
 		//Or
 		System.out.println(x.toString());
 		
+		//System.out.println(Collections.list(x.).toString());
+		
 
 	}
 
 }
+/* Groovy deduplicate ignore case.
+    static def dedupSortIgnoreCase (l) {
+        l=l==null?[]:l
+        l=sortListIgnoreCase(l)
+        def x = new LinkedHashMap()
+
+        for (def e:l) {
+            x.put(e.toString().toLowerCase(),e)
+        }
+
+        l.clear()
+        l.addAll(x.values())
+        l
+    }
+    */
