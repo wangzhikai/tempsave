@@ -5,6 +5,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TODOTestregex {
+	/* Better approach for ],]
+    //output = output.replaceAll("(?s)],[^,]*]\\z","]\n]")
+    //Java: output = output.replaceAll("(?s)],[^,]*]\\\\z","]\n]")
+    Pattern p = Pattern.compile("(?s)],[^,]*][^]]*\\z");
+    Matcher m = p.matcher(output);
+    if (m.find())
+        println "found"
+    else
+        println "not found"
+        */
 
 	public static void main(String[] args) {
 		
