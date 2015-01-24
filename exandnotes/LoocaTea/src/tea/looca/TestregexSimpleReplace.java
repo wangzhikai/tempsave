@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TODOTestregex {
+public class TestregexSimpleReplace {
 	/* Better approach for ],]
     //output = output.replaceAll("(?s)],[^,]*]\\z","]\n]")
     //Java: output = output.replaceAll("(?s)],[^,]*]\\\\z","]\n]")
