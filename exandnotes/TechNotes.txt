@@ -1,3 +1,20 @@
+==== vi vim deletes
+http://alvinalexander.com/linux/vi-vim-delete-line-commands-to-end
+x   - delete current character
+dw  - delete current word
+dd  - delete current line
+5dd - delete five lines
+
+d$  - delete to end of line
+d0  - delete to beginning of line
+
+:1,.d
+delete to beginning of file
+
+:.,$d
+delete to end of file
+
+
 ==== dc 9.2.0 Need --migration
 /Users/zwang/dcmlui/dev-tools/scripts/debug-dc.sh --migrate --war /Users/zwang/dcmlui/dc/muse-dc-web/target/muse-dc-web-9.2.0-SNAPSHOT.war
 ==== safe to use this block, but compare null and null is still a logic deficiency
