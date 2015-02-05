@@ -51,5 +51,59 @@ public class TODOCartesianProductTest {
 		// Case IV: list of list X list of list
 
 	}
+	/* The belly whisper approach:
+   // Limited deepCopy to List and Map
+    def deepCopy = { o ->
+        def n
+        if (o instanceof List) {
+            n = []
+            o.each { e ->
+                n.add(deepCopy(e))
+            }
+        } else if (o instanceof Map ) {
+            n = [:]
+            o.each {k,v->
+                n.put(k,deepCopy(o.get(k)))
+            }
+        } else {
+            n = o
+        }
+        n
+    }
+
+    // Limited deepCompare to List and Map, ideally all are strings.
+    // Watch out for floating point and date ...
+    def deepCompare = { l,r ->
+        def result = true
+        if (l instanceof List) {
+            int s = l.size()
+            if (s!= r.size()) {
+                result = false
+            } else {
+                for (int i ; i <s ; i++) {
+                    result = deepCompare(l[i],r[i])
+                    if (!result)
+                        break
+                }
+            }
+        } else if (l instanceof Map ) {
+            int s = l.size()
+            if (s!= r.size()) {
+                result = false
+            } else {
+                for (def k: l.keySet()) {
+                    result = deepCompare(l.get(k),r.get(k))
+                    if (!result)
+                        break
+                }
+            }
+        } else {
+            result = l.equals(r)
+        }
+        result
+    }
+
+}
+	 */
 
 }
