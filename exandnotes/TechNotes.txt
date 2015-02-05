@@ -1,3 +1,6 @@
+==== git remove deleted
+ git add -f *.txt
+git status | grep deleted | sed -e 's/deleted://' | xargs -I{} git rm {}
 ==== lua
 curl -R -O http://www.lua.org/ftp/lua-5.3.0.tar.gz
 tar zxf lua-5.3.0.tar.gz
