@@ -1,3 +1,19 @@
+==== Python Selenium notes
+ 1004  cd ~/Downloads/
+ 1005  ls -lt
+ 1006  tar xvzf selenium-2.44.0.tar.gz 
+ 1007  cd selenium-2.44.0/
+ 1008  python setup.py install
+ 1009  sudo python setup.py install
+ 1010  vim example.py
+ 1011  python example.py 
+ 1012  history
+$ cat example.py 
+from selenium import webdriver
+
+browser = webdriver.Firefox()
+browser.get('http://seleniumhq.org/')
+
 ==== git remove deleted
  git add -f *.txt
 git status | grep deleted | sed -e 's/deleted://' | xargs -I{} git rm {}
