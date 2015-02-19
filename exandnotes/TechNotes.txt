@@ -1,3 +1,8 @@
+==== Basic Jmeter settings 
+$ export JMETER_HOME=/home/zhikai/Downloads/apache-jmeter-2.12
+$ export PATH=${PATH}:$JMETER_HOME/bin
+$ jmeter
+
 ==== Python Selenium notes
  1004  cd ~/Downloads/
  1005  ls -lt
