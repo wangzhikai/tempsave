@@ -6,9 +6,49 @@ import java.util.regex.Pattern;
 
 
 public class TripleSix {
-	
-	
 	public static int computer (String str) {
+		int result = -1;
+
+		
+		// Concatenate all
+		//str = str.replaceAll("c", "");
+		System.out.println(str);
+		// Replace all op1*op2
+		//str = str.replaceAll("c", "");
+		Pattern p = Pattern.compile("[0-9]+[*][0-9]+");
+		Matcher m = p.matcher(str);
+		while (m.find()) {
+			String tmp = str.substring(m.start(),m.end());
+			String [] tmparr = tmp.split("[*]");
+			CharSequence s1 = tmp;
+
+			//str = str.replaceAll(tmp, ""+(Integer.parseInt(tmparr[0]) * Integer.parseInt(tmparr[1])));
+			str = str.replace(s1, ""+(Integer.parseInt(tmparr[0]) * Integer.parseInt(tmparr[1])));
+			p = Pattern.compile("[0-9]+[*][0-9]+");
+			m = p.matcher(str);
+		}
+		System.out.println(str);
+		
+		p = Pattern.compile("[0-9]+[+][0-9]+");
+		m = p.matcher(str);
+		while (m.find()) {
+			String tmp = str.substring(m.start(),m.end());
+			String [] tmparr = tmp.split("[+]");
+			CharSequence s1 = tmp;
+
+			//str = str.replaceAll(tmp, ""+(Integer.parseInt(tmparr[0]) * Integer.parseInt(tmparr[1])));
+			str = str.replace(s1, ""+(Integer.parseInt(tmparr[0])+ Integer.parseInt(tmparr[1])));
+			p = Pattern.compile("[0-9]+[+][0-9]+");
+			m = p.matcher(str);
+		}
+		System.out.println(str);
+		str = str.replaceAll("c", "");
+		System.out.println(str);
+
+		return result=Integer.parseInt(str);
+	}	
+	
+	public static int computerbk (String str) {
 		int result = -1;
 
 		
