@@ -1,6 +1,5 @@
 /**
  * @author Zhikai Wang/www.heteroclinic.net
- * This class is an example/exercise to provide a code base to compute k-combinations of a set, using functional programming features.
  * Given third party license acknowledged and this header kept or quoted, you can utilize this program at will.
 */
 
